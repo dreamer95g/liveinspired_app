@@ -107,7 +107,7 @@ export const PhraseScreen = ({ history }) => {
                   </div>
                   <br />
 
-                  <p className="text-xl text-center font-semibold">{text}</p>
+                  <p className="text-lg text-center">{text}</p>
                 </blockquote>
               </div>
 

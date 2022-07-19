@@ -4,8 +4,8 @@ export const PhraseCard = ({ history, phrase }) => {
   useEffect(() => {}, []);
   return (
     <div className="animate__animated animate__fadeIn inline-block mx-3 border-2 border-gray-50 max-w-sm p-6 m-auto my-5 bg-white rounded-md shadow-lg dark:bg-gray-800">
-      <h1
-        className="text text-justify cursor-pointer hover:text-blue-700"
+      <p
+        className="text-lg dark:text-gray-300  text-justify cursor-pointer hover:text-blue-700"
         onClick={() => {
           if (phrase.id !== undefined) {
             const { id } = phrase;
@@ -14,7 +14,7 @@ export const PhraseCard = ({ history, phrase }) => {
         }}
       >
         {phrase !== undefined && phrase.text}
-      </h1>
+      </p>
       <div className="text-md font-semibold text-center">
         {(phrase !== undefined && phrase.tags.length) !== 0 &&
           phrase.tags.map((tag, i) => {

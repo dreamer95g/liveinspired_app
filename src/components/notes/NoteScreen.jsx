@@ -108,7 +108,7 @@ export const NoteScreen = ({ history }) => {
                   </div>
                   <br />
 
-                  <p className="text-xl text-justify font-semibold">{text}</p>
+                  <p className="text-lg text-justify ">{text}</p>
                 </blockquote>
               </div>
 

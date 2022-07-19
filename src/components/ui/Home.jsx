@@ -1,56 +1,88 @@
 import { Slider } from "./Slider";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-// import { CONTACTS } from "../../graphql/queries/ContactsQueries";
-// import { ORGANIZATIONS } from "../../graphql/queries/OrganizationsQueries";
-// import { FOREIGN_MISSIONS } from "../../graphql/queries/ForeignMissionsQueries";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { NOTES } from "../../graphql/queries/NotesQueries";
+import { PHRASES } from "../../graphql/queries/PhrasesQueries";
 
 import { apollo_client } from "../../config/apollo";
 
 export const Home = ({ history }) => {
-  const [contacts, setContacts] = useState("0");
-  const [organizations, setOrganizations] = useState("0");
-  const [foreignMissions, setTrackings] = useState("0");
+  const [notes, setNotes] = useState("");
+  const [phrases, setPhrases] = useState("");
+  const [dailyPhrase, setDailyPhrase] = useState("");
+  const [dailyAuthor, setDailyAuthor] = useState("");
+  const [dailyTags, setDailyTags] = useState("");
 
-  // const { data: contactsFromServer } = useQuery(CONTACTS);
-  // const { data: organizationsFromServer } = useQuery(ORGANIZATIONS);
-  // const { data: foreignMissionsFromServer } = useQuery(FOREIGN_MISSIONS);
-  //
-  // const refetch = async () => {
-  //   await apollo_client.refetchQueries({
-  //     include: [CONTACTS, ORGANIZATIONS, FOREIGN_MISSIONS],
-  //   });
-  // };
+  const { data: notesFromServer } = useQuery(NOTES);
+  const { data: phrasesFromServer } = useQuery(PHRASES);
 
-  // useEffect(() => {
-  //   if (contactsFromServer !== undefined && contactsFromServer !== null) {
-  //     const { contacts } = contactsFromServer;
-  //     if (contacts !== null && contacts !== undefined)
-  //       setContacts(contacts.length);
-  //   }
-  //
-  //   if (
-  //     organizationsFromServer !== undefined &&
-  //     organizationsFromServer !== null
-  //   ) {
-  //     const { organizations } = organizationsFromServer;
-  //     if (organizations !== null && organizations.length !== 0)
-  //       setOrganizations(organizations.length);
-  //   }
-  //
-  //   if (
-  //     foreignMissionsFromServer !== undefined &&
-  //     foreignMissionsFromServer !== null
-  //   ) {
-  //     const { foreignMissions } = foreignMissionsFromServer;
-  //     if (foreignMissions !== null && foreignMissions !== undefined)
-  //       setTrackings(foreignMissions.length);
-  //   }
-  // }, [contactsFromServer, organizationsFromServer, foreignMissionsFromServer]);
-  //
-  // useEffect(() => {
-  //   refetch();
-  // }, []);
+  const refetch = async () => {
+    await apollo_client.refetchQueries({
+      include: [NOTES, PHRASES],
+    });
+  };
+
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+
+  const shuffle = (arr) => {
+    const length = arr.length;
+    let result = [];
+
+    for (let i = 0; i < length; i++) {
+      const rand_index = Math.floor(Math.random() * length);
+
+      const rand = arr[rand_index];
+
+      arr[rand_index] = arr[i];
+      arr[i] = rand;
+
+      result.push(rand);
+    }
+
+    return result;
+  };
+
+  const getRandomPhrase = (phrases) => {
+    let result = null;
+
+    let pointer = phrases.length;
+    if (pointer !== 0) {
+      let phraseId = getRandomInt(0, pointer - 1);
+      result = phrases[phraseId];
+    }
+
+    if (result !== null) {
+      const { text, author, tags } = result;
+      setDailyPhrase(text);
+      setDailyAuthor(author);
+      setDailyTags(tags);
+    }
+  };
+
+  useEffect(() => {
+    if (notesFromServer !== undefined && notesFromServer !== null) {
+      const { Notes } = notesFromServer;
+
+      if (Notes !== null && Notes !== undefined) setNotes(Notes.length);
+    }
+  }, [notesFromServer]);
+
+  useEffect(() => {
+    if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
+      const { Phrases } = phrasesFromServer;
+
+      getRandomPhrase(Phrases);
+      if (Phrases !== null && Phrases.length !== 0) setPhrases(Phrases.length);
+    }
+  }, [phrasesFromServer]);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <div>
@@ -58,156 +90,130 @@ export const Home = ({ history }) => {
         <div className="flex flex-col mt-0">
           {" "}
           <div className="my-1 align-middle inline-block min-w-full shadow overflow-hidden rounded-lg sm:rounded-lg ">
-            <Slider />
+            {/* <Slider /> */}
           </div>
         </div>
 
-        <br></br>
+        {/* -------------------------------------Frase Diaria------------------------------------- */}
+        <div className="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-2xl dark:bg-gray-800">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
+              {new Date().toLocaleDateString("es-es", {
+                weekday: "long",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+          </div>
 
-        <div className="flex flex-wrap -mx-6 ">
-          <div className="w-full px-6 sm:w-1/2 xl:w-1/3">
-            <div
-              className="border-2 cursor-pointer border-gray-50 flex items-center px-5 py-6 shadow-lg rounded-lg bg-white"
-              onClick={() => {
-                history.push(`/dashboard/contacts`);
-              }}
-            >
-              <div
-                className="p-3 rounded-full bg-indigo-700 bg-opacity-75"
-                onClick={() => {
-                  history.push(`/dashboard/phrases`);
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
-                  />
-                </svg>
-              </div>
+          <div className="mt-2">
+            <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
+              Frase de Impacto del día
+            </h1>
+            <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
+              {dailyPhrase}
+            </p>
+          </div>
 
-              <div className="mx-5">
-                <h4 className="text-2xl font-semibold ">{contacts}</h4>
-                <p
-                  className="font-semibold cursor-pointer hover:text-blue-700"
-                  onClick={() => {
-                    history.push(`/dashboard/notes`);
-                  }}
-                >
-                  Frases
-                </p>
+          <div className="flex items-center justify-between mt-4">
+            <p className="text-blue-700 text-lg font-semibold cursor-pointer dark:text-blue-400 hover:no-underline">
+              {dailyAuthor}
+            </p>
+          </div>
+
+          <div className="text-md font-semibold text-left cursor-pointer">
+            {dailyTags.length !== 0 &&
+              dailyTags.map((tag, i) => {
+                return (
+                  <p
+                    key={i}
+                    className="text-blue-700  inline-block mx-2"
+                  >{`#${tag.name}`}</p>
+                );
+              })}
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        {/* <div className="flex flex-wrap content-center">
+          <div className="w-full px-6  sm:w-1/2 xl:w-1/3 mx-auto">
+            <div className="content-center border-2 cursor-pointer border-gray-50 flex items-center  py-6 shadow-2xl rounded-lg bg-white">
+              <div className="flex mx-auto content-center">
+                <>
+                  <div
+                    className="mx-5 p-3 rounded-full bg-green-700 bg-opacity-75 content-center "
+                    onClick={() => {
+                      history.push(`/dashboard/notes`);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8  text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className="mx-auto">
+                    <h4 className="text-2xl font-semibold my-auto">{notes}</h4>
+                  </div>
+                </>
+
+                <>
+                  <div
+                    className="mx-5 p-3 rounded-full bg-blue-700 bg-opacity-75 content-center"
+                    onClick={() => {
+                      history.push(`/dashboard/phrases`);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className="mx-auto">
+                    <h4 className="text-2xl font-semibold my-auto">
+                      {phrases}
+                    </h4>
+                  </div>
+                </>
               </div>
             </div>
           </div>
 
-          {/*<div className="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">*/}
-            {/*<div*/}
-              {/*className="border-2 cursor-pointer border-gray-50 flex items-center px-5 py-6 shadow-lg rounded-lg bg-white"*/}
-              {/*onClick={() => {*/}
-                {/*history.push(`/dashboard/organizations`);*/}
-              {/*}}*/}
-            {/*>*/}
-              {/*<div*/}
-                {/*className="p-3 rounded-full bg-indigo-700 bg-opacity-75"*/}
-                {/*onClick={() => {*/}
-                  {/*history.push(`/dashboard/organizations`);*/}
-                {/*}}*/}
-              {/*>*/}
-                {/*<svg*/}
-                  {/*xmlns="http://www.w3.org/2000/svg"*/}
-                  {/*class="h-8 w-8 text-white"*/}
-                  {/*fill="none"*/}
-                  {/*viewBox="0 0 23 23"*/}
-                  {/*stroke="currentColor"*/}
-                  {/*strokeWidth="2"*/}
-                {/*>*/}
-                  {/*<path*/}
-                    {/*strokeLinecap="round"*/}
-                    {/*strokeLinejoin="round"*/}
-                    {/*d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"*/}
-                  {/*/>*/}
-                {/*</svg>*/}
-              {/*</div>*/}
-
-              {/*<div className="mx-5">*/}
-                {/*<h4 className="text-2xl font-semibold ">{organizations}</h4>*/}
-                {/*<p*/}
-                  {/*className="font-semibold cursor-pointer hover:text-blue-700"*/}
-                  {/*onClick={() => {*/}
-                    {/*history.push(`/dashboard/organizations`);*/}
-                  {/*}}*/}
-                {/*>*/}
-                  {/*Versos Bíblicos{" "}*/}
-                {/*</p>*/}
-              {/*</div>*/}
-            {/*</div>*/}
-          {/*</div>*/}
-
-          {/*<div className="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0 ">*/}
-            {/*<div*/}
-              {/*className="border-2 cursor-pointer border-gray-50 flex items-center px-5 py-6 shadow-lg rounded-lg bg-white"*/}
-              {/*onClick={() => {*/}
-                {/*history.push(`/dashboard/missions`);*/}
-              {/*}}*/}
-            {/*>*/}
-              {/*<div*/}
-                {/*className="p-3 rounded-full bg-indigo-700 bg-opacity-75 "*/}
-                {/*onClick={() => {*/}
-                  {/*history.push(`/dashboard/missions`);*/}
-                {/*}}*/}
-              {/*>*/}
-                {/*<svg*/}
-                  {/*xmlns="http://www.w3.org/2000/svg"*/}
-                  {/*class="h-8 w-8 text-white"*/}
-                  {/*fill="none"*/}
-                  {/*viewBox="0 0 24 24"*/}
-                  {/*stroke="currentColor"*/}
-                  {/*strokeWidth="2"*/}
-                {/*>*/}
-                  {/*<path*/}
-                    {/*strokeLinecap="round"*/}
-                    {/*strokeLinejoin="round"*/}
-                    {/*d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"*/}
-                  {/*/>*/}
-                {/*</svg>*/}
-              {/*</div>*/}
-
-              {/*<div className="mx-5 ">*/}
-                {/*<h4 className="text-2xl font-semibold ">{foreignMissions}</h4>*/}
-                {/*<p*/}
-                  {/*className="font-semibold cursor-pointer hover:text-blue-700"*/}
-                  {/*onClick={() => {*/}
-                    {/*history.push(`/dashboard/missions`);*/}
-                  {/*}}*/}
-                {/*>*/}
-                  {/*Notas{" "}*/}
-                {/*</p>*/}
-              {/*</div>*/}
-            {/*</div>*/}
-          {/*</div>*/}
-        </div>
-        <br />
-        {/* <div>
-          <h1 className="text-center text-3xl my-10">
-            Aun en desarrollo
-            <p className="text-blue-600 animate-pulse text-6xl font-semibold">
-              {text}
-            </p>
-          </h1>
+          <br />
         </div> */}
+
+        <br />
+
         <br />
       </div>
     </div>

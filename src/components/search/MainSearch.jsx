@@ -199,7 +199,7 @@ export const MainSearch = ({ history }) => {
   return (
     <div className=" border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
       <div className="text-center content-center text-lg my-4 ">
-        <nav class="flex ">
+        <nav className="flex ">
           <div className="mx-auto flex">
             <SearchTypeSelector
               showNotesSection={showNotesSection}
@@ -263,19 +263,19 @@ export const MainSearch = ({ history }) => {
 
           {showEmptyMessage === true ? (
             <div>
-              <h1 className="text-center text-2xl">
+              <p className="text-center text-xl">
                 No se encontraron resultados
-              </h1>
+              </p>
             </div>
           ) : (
             resultsFounded.length !== 0 && (
               <div className="flex content-center ">
                 <div className="flex mx-auto cursor-default">
-                  <h1 className=" text-xl my-7 mx-1 text-center">
+                  <p className=" text-xl my-7 mx-1 text-center">
                     Se encontraron
-                  </h1>
-                  <h1 className="text-blue-700 text-xl my-7 mx-1 font-bold text-center">{`${resultsFounded.length}`}</h1>
-                  <h1 className="text-xl my-7 mx-1 text-center">resultados</h1>
+                  </p>
+                  <p className="text-blue-700 text-xl my-7 mx-1 text-center">{`${resultsFounded.length}`}</p>
+                  <p className="text-xl my-7 mx-1 text-center">resultados</p>
                 </div>
               </div>
             )
