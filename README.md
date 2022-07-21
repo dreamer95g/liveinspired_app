@@ -15,7 +15,7 @@
 </br>
 </br>
 
-<img src="./src/assets/images/logo.png" alt="Live Inspired" style="width:200px ">
+<img src="./src/assets/logo.png" alt="Live Inspired" style="width:200px ">
 
 </br>
 </br>
