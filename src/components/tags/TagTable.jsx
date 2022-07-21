@@ -6,6 +6,11 @@ import { SearchOutlined } from "@ant-design/icons";
 export const TagTable = ({ tagsList, setSelectedIds }) => {
   let searchInput = "";
 
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setState({ searchText: "" });
+  };
+
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -36,14 +41,13 @@ export const TagTable = ({ tagsList, setSelectedIds }) => {
           >
             Buscar
           </Button>
-          {/* <Button
-            // onClick={() => handleReset(clearFilters)}
-            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          <Button
+            onClick={() => handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
           >
-            Resetear
-          </Button> */}
+            Limpiar
+          </Button>
         </Space>
       </div>
     ),

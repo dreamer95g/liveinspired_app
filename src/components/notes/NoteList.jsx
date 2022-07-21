@@ -72,7 +72,7 @@ export const NoteList = ({ history }) => {
           // console.log(data);
           openNotification(
             "success",
-            "Informacion",
+            "Información",
             "Nota eliminada satisfactoriamente!"
           );
           clean();
@@ -80,7 +80,7 @@ export const NoteList = ({ history }) => {
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrio una error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
         // dispatch(finishLoadingAction());
       }
     } else if (selectedIds.length > 1) {
@@ -91,7 +91,7 @@ export const NoteList = ({ history }) => {
           // console.log(data);
           openNotification(
             "success",
-            "Informacion",
+            "Información",
             "Notas eliminadas satisfactoriamente!"
           );
           clean();
@@ -99,13 +99,13 @@ export const NoteList = ({ history }) => {
         });
       } catch (error) {
         console.log(error);
-        // openNotification("error", "Error!", `Ocurrio una error: ${error.name}`);
+        // openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
         // dispatch(finishLoadingAction());
       }
     } else {
       openNotification(
         "warning",
-        "Atencion!",
+        "Atención!",
         "Debe seleccionar al menos una nota!"
       );
     }
@@ -132,7 +132,7 @@ export const NoteList = ({ history }) => {
         </Button>
       );
       notification.open({
-        message: "Atencion!",
+        message: "Atención!",
         description: "Esta seguro que desea eliminar la nota?",
         btn,
         key,
@@ -140,7 +140,7 @@ export const NoteList = ({ history }) => {
     } else {
       openNotification(
         "warning",
-        "Atencion!",
+        "Atención!",
         "Debe seleccionar al menos una nota!"
       );
     }
@@ -167,7 +167,7 @@ export const NoteList = ({ history }) => {
     } else {
       openNotification(
         "warning",
-        "Atencion!",
+        "Atención!",
         "Debe seleccionar al menos una nota!"
       );
     }
@@ -183,7 +183,7 @@ export const NoteList = ({ history }) => {
     } else {
       openNotification(
         "warning",
-        "Atencion!",
+        "Atención!",
         "Debe seleccionar al menos una nota!"
       );
     }
@@ -306,7 +306,7 @@ export const NoteList = ({ history }) => {
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
-              <span className="mx-1">Modificar</span>
+              <span className="mx-1">Editar</span>
             </button>
             <button
               onClick={goToViewNote}

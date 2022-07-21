@@ -112,7 +112,7 @@ export const TagList = ({ history }) => {
         }
       }
     } else {
-      openNotification(`success`, `Atencion!`, `Selecione una Etiqueta!!!`);
+      openNotification(`success`, `Atención!`, `Selecione una Etiqueta!!!`);
     }
   };
 
@@ -134,7 +134,7 @@ export const TagList = ({ history }) => {
         //dispatch(finishLoadingAction());
       });
     } else if (selectedIds.length > 1) {
-      console.log(selectedIds);
+      // console.log(selectedIds);
       dispatch(startLoadingAction());
       try {
         await deleteTags({
@@ -153,11 +153,11 @@ export const TagList = ({ history }) => {
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrio un error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió un error: ${error.name}`);
         // dispatch(finishLoadingAction());
       }
     } else {
-      openNotification("warning", "Atencion!!", `Seleccione una Etiqueta!!`);
+      openNotification("warning", "Atención!!", `Seleccione una Etiqueta!`);
     }
   };
 
@@ -181,7 +181,7 @@ export const TagList = ({ history }) => {
         </Button>
       );
       notification.open({
-        message: "Atencion!",
+        message: "Atención!",
         description: "Esta seguro que desea eliminar la Etiqueta?",
         btn,
         key,
@@ -189,7 +189,7 @@ export const TagList = ({ history }) => {
     } else {
       openNotification(
         "warning",
-        "Atencion!",
+        "Atención!",
         "Debe seleccionar al menos una Etiqueta!"
       );
     }
@@ -274,7 +274,7 @@ export const TagList = ({ history }) => {
                 } else {
                   openNotification(
                     "warning",
-                    "Atencion!",
+                    "Atención!",
                     "Debe seleccionar una Etiqueta!"
                   );
                 }

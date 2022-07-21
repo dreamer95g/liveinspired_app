@@ -22,8 +22,8 @@ export const LoginScreen = ({ history }) => {
   const { loading } = useSelector((state) => state.ui);
 
   const [formValues, handleInputChange] = useForm({
-    username: "gabry95g@gmail.com",
-    password: "xgabry",
+    username: "",
+    password: "",
   });
 
   const { username, password } = formValues;
@@ -81,12 +81,12 @@ export const LoginScreen = ({ history }) => {
         });
       } catch (error) {
         if (error.message === "invalid_grant")
-          console.log("No se reconoce usuario y pass!!");
-        openNotification(
-          "error",
-          "Error!",
-          "No se reconoce usuario o contraseña!"
-        );
+          // console.log("No se reconoce usuario o contraseña!!");
+          openNotification(
+            "error",
+            "Error!",
+            "No se reconoce usuario o contraseña!"
+          );
 
         dispatch(finishLoadingAction());
         animateBrandImage(false);
@@ -101,8 +101,8 @@ export const LoginScreen = ({ history }) => {
       <div className=" border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20 bg-white rounded-md shadow-lg dark:bg-gray-800">
         <img
           id="image"
-          // src={`../../assets/images/inspired1`}
-          src="/src/assets/images/logo.png"
+          src={`${url_base}assets/images/logo.png`}
+          // src="/src/assets/logo.png"
           className="w-40 h-40 mx-auto content-center my-auto"
         />
 

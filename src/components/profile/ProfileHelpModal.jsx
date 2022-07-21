@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button, Input, notification } from "antd";
 import { url_base } from "../../config/app";
 
-export const ProfileHelpModal = ({ show, setShowHelpModal }) => {
+export const ProfileHelpModal = ({ showHelpModal, setShowHelpModal }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [name, setName] = useState("");
@@ -38,10 +38,10 @@ export const ProfileHelpModal = ({ show, setShowHelpModal }) => {
   };
 
   useEffect(() => {
-    if (show) {
+    if (showHelpModal) {
       showModal();
     }
-  }, [show]);
+  }, [showHelpModal]);
 
   return (
     <>
@@ -52,9 +52,8 @@ export const ProfileHelpModal = ({ show, setShowHelpModal }) => {
         onCancel={handleCancel}
         footer={[
           <div>
-            
             <h1 className="text-md text-center">
-              Develop by:{" "}
+              Duda o Sugerencia a:{" "}
               <a className="text-blue-700 hover:underline hover:text-blue-500">
                 gabry95g@gmail.com
               </a>
@@ -66,17 +65,11 @@ export const ProfileHelpModal = ({ show, setShowHelpModal }) => {
         <div>
           <img
             className="w-32 h-32 mx-auto content-center my-auto rounded-full cursor-pointer"
-            src="/src/assets/images/logo.png"
+            src={`${url_base}assets/images/logo.png`}
             alt="brand"
           />
           {/* <hr className="my-4 "></hr> */}
         </div>
-        {/* <Input
-          placeholder="Categoria"
-          value={name}
-          onChange={handleInputNameChange}
-          onPressEnter={handleOk}
-        /> */}
       </Modal>
     </>
   );

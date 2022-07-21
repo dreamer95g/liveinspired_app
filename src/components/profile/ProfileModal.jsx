@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Password from "antd/lib/input/Password";
 import { KnownTypeNamesRule } from "graphql";
 export const ProfileModal = ({
-  show,
+  showProfileModal,
   setShowProfileModal,
   setAvatar,
   setProfileName,
@@ -261,11 +261,11 @@ export const ProfileModal = ({
   };
 
   useEffect(() => {
-    if (show) {
+    if (showProfileModal) {
       showModal();
     }
     refetch();
-  }, [show]);
+  }, [showProfileModal]);
 
   useEffect(() => {
     if (errorInChangePass !== undefined) {

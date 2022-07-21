@@ -78,7 +78,7 @@ export const PhraseScreen = ({ history }) => {
           <div className="animate__animated animate__fadeIn">
             <div className="content-center text-center my-6 ">
               <div className="inline-flex items-center ">
-                <h1 className="text-2xl mx-3 ">Ver Frase de </h1>
+                <h1 className="text-2xl mx-3 ">Ver frase de </h1>
                 <h1 className="  text-2xl font-semibold text-blue-700 mx-1 ">{` ${author}`}</h1>
               </div>
             </div>

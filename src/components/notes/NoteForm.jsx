@@ -86,19 +86,19 @@ export const NoteForm = ({ history }) => {
     let isValid = true;
 
     if (validator.isEmpty(date)) {
-      openNotification("warning", "Atencion", "Llene la fecha!");
+      openNotification("warning", "Atención", "Llene la fecha!");
       isValid = false;
     }
 
     if (validator.isEmpty(text)) {
-      openNotification("warning", "Atencion", "Escriba algo en la nota!");
+      openNotification("warning", "Atención", "Escriba algo en la nota!");
       isValid = false;
     }
 
     if (tags.length === 0 && tagsList.length === 0) {
       openNotification(
         "warning",
-        "Atencion",
+        "Atención",
         "Seleccione al menos una etiqueta!"
       );
       isValid = false;
@@ -134,7 +134,7 @@ export const NoteForm = ({ history }) => {
         openNotification(
           "success",
           "Nota Guardada",
-          `La nota se guardo de forma satisfactoria!`
+          `La nota se guardó de forma satisfactoria!`
         );
         dispatch(finishLoadingAction());
         history.push("/dashboard/notes");
@@ -145,7 +145,7 @@ export const NoteForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrio algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`
       );
     }
   };
@@ -199,7 +199,7 @@ export const NoteForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrio algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`
       );
     }
   };
@@ -336,23 +336,43 @@ export const NoteForm = ({ history }) => {
                 className="flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 focus:outline-none text-white"
                 type="button"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mx-4 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
-                  />
-                </svg>
-                <span className="mx-1">
-                  {action === "save" ? `Guardar` : `Modificar`}
-                </span>
+                {action === "save" ? (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="mx-4 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+                      />
+                    </svg>
+                    <span className="mx-1">Guardar</span>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="mx-4 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                    <span className="mx-1">Editar</span>
+                  </>
+                )}
               </button>
               <button
                 onClick={goBack}

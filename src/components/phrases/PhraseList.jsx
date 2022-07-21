@@ -71,7 +71,7 @@ export const PhraseList = ({ history }) => {
         }).then((data) => {
           openNotification(
             "success",
-            "Informacion",
+            "Información",
             "Frase eliminada satisfactoriamente!"
           );
           clean();
@@ -79,7 +79,7 @@ export const PhraseList = ({ history }) => {
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrio una error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
         // dispatch(finishLoadingAction());
       }
     } else if (selectedIds.length > 1) {
@@ -90,7 +90,7 @@ export const PhraseList = ({ history }) => {
           // console.log(data);
           openNotification(
             "success",
-            "Informacion",
+            "Información",
             "Frases eliminadas satisfactoriamente!"
           );
           clean();
@@ -98,7 +98,7 @@ export const PhraseList = ({ history }) => {
         });
       } catch (error) {
         console.log(error);
-        // openNotification("error", "Error!", `Ocurrio una error: ${error.name}`);
+        // openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
         // dispatch(finishLoadingAction());
       }
     } else {
@@ -310,7 +310,7 @@ export const PhraseList = ({ history }) => {
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
-              <span className="mx-1">Modificar</span>
+              <span className="mx-1">Editar</span>
             </button>
             <button
               onClick={goToViewPhrase}

@@ -81,7 +81,7 @@ export const MainSearch = ({ history }) => {
       }
     } else {
       dispatch(finishLoadingAction());
-      openNotification("warning", "Atencion", "Selecciones las Etiquetas");
+      openNotification("warning", "Atención", "Seleccione las Etiquetas");
     }
   };
 
@@ -148,7 +148,7 @@ export const MainSearch = ({ history }) => {
 
       const phs = phrasesFounded.length !== 0 ? phrasesFounded : [];
 
-      console.log(phs);
+      // console.log(phs);
 
       if (phs.length !== 0) {
         phs.forEach((ph) => {

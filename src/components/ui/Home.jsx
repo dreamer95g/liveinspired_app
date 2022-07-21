@@ -1,49 +1,43 @@
 import { Slider } from "./Slider";
 import React, { useEffect, useState } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { NOTES } from "../../graphql/queries/NotesQueries";
 import { PHRASES } from "../../graphql/queries/PhrasesQueries";
-
+import { notification } from "antd";
 import { apollo_client } from "../../config/apollo";
+import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
+import { Loading } from "../ui/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export const Home = ({ history }) => {
-  const [notes, setNotes] = useState("");
+  // const [notes, setNotes] = useState("");
   const [phrases, setPhrases] = useState("");
   const [dailyPhrase, setDailyPhrase] = useState("");
   const [dailyAuthor, setDailyAuthor] = useState("");
   const [dailyTags, setDailyTags] = useState("");
+  const [show, setShow] = useState(false);
+  const [phraseToCopy, setPhraseToCopy] = useState({
+    value: "",
+    copied: false,
+  });
 
   const { data: notesFromServer } = useQuery(NOTES);
   const { data: phrasesFromServer } = useQuery(PHRASES);
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.ui);
 
   const refetch = async () => {
     await apollo_client.refetchQueries({
       include: [NOTES, PHRASES],
     });
+    dispatch(finishLoadingAction());
   };
 
   const getRandomInt = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
-  };
-
-  const shuffle = (arr) => {
-    const length = arr.length;
-    let result = [];
-
-    for (let i = 0; i < length; i++) {
-      const rand_index = Math.floor(Math.random() * length);
-
-      const rand = arr[rand_index];
-
-      arr[rand_index] = arr[i];
-      arr[i] = rand;
-
-      result.push(rand);
-    }
-
-    return result;
   };
 
   const getRandomPhrase = (phrases) => {
@@ -63,25 +57,55 @@ export const Home = ({ history }) => {
     }
   };
 
-  useEffect(() => {
-    if (notesFromServer !== undefined && notesFromServer !== null) {
-      const { Notes } = notesFromServer;
+  const openNotification = (type, message, description) => {
+    notification[type]({
+      message: message,
+      description: description,
+    });
+  };
 
-      if (Notes !== null && Notes !== undefined) setNotes(Notes.length);
+  const copyToClip = () => {
+    let phraseText = document.getElementById("phrase").innerText;
+    let authorText = document.getElementById("author").innerText;
+
+    let phrase = " " + phraseText + "   " + authorText;
+
+    setPhraseToCopy({ value: phrase, copied: true });
+
+    const { copied } = phraseToCopy;
+
+    if (copied === true) {
+      openNotification(
+        "success",
+        "Frase Copiada",
+        "Frase copiada al portapapeles."
+      );
     }
-  }, [notesFromServer]);
+  };
+
+  // useEffect(() => {
+  //   if (notesFromServer !== undefined && notesFromServer !== null) {
+  //     const { Notes } = notesFromServer;
+
+  //     if (Notes !== null && Notes !== undefined) setNotes(Notes.length);
+  //   }
+  // }, [notesFromServer]);
 
   useEffect(() => {
     if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
       const { Phrases } = phrasesFromServer;
 
       getRandomPhrase(Phrases);
+
       if (Phrases !== null && Phrases.length !== 0) setPhrases(Phrases.length);
     }
+    // console.log(phrasesFromServer)
   }, [phrasesFromServer]);
 
   useEffect(() => {
+    dispatch(startLoadingAction());
     refetch();
+    setPhraseToCopy({ value: "", copied: false });
   }, []);
 
   return (
@@ -95,45 +119,93 @@ export const Home = ({ history }) => {
         </div>
 
         {/* -------------------------------------Frase Diaria------------------------------------- */}
-        <div className="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-2xl dark:bg-gray-800">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
-              {new Date().toLocaleDateString("es-es", {
-                weekday: "long",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </span>
-          </div>
 
-          <div className="mt-2">
-            <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
-              Frase de Impacto del día
-            </h1>
-            <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
-              {dailyPhrase}
-            </p>
-          </div>
+        {!loading ? (
+          <div className="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-2xl dark:bg-gray-800">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
+                {new Date().toLocaleDateString("es-es", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+              {phrasesFromServer !== undefined &&
+                phrasesFromServer.Phrases.length !== 0 && (
+                  <CopyToClipboard
+                    text={phraseToCopy.value}
+                    onCopy={copyToClip}
+                  >
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 cursor-pointer hover:text-blue-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                        />
+                      </svg>
+                    </span>
+                  </CopyToClipboard>
+                )}
+            </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <p className="text-blue-700 text-lg font-semibold cursor-pointer dark:text-blue-400 hover:no-underline">
-              {dailyAuthor}
-            </p>
-          </div>
-
-          <div className="text-md font-semibold text-left cursor-pointer">
-            {dailyTags.length !== 0 &&
-              dailyTags.map((tag, i) => {
-                return (
+            <div className="mt-2">
+              {phrasesFromServer !== undefined &&
+              phrasesFromServer.Phrases.length !== 0 ? (
+                <>
+                  <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
+                    Frase de Impacto del día
+                  </h1>
                   <p
-                    key={i}
-                    className="text-blue-700  inline-block mx-2"
-                  >{`#${tag.name}`}</p>
-                );
-              })}
+                    id="phrase"
+                    className="mt-2 text-lg text-gray-600 dark:text-gray-300"
+                  >
+                    {dailyPhrase}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
+                    No hay frases que mostrar.
+                  </h1>
+                </>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between mt-4">
+              <p
+                id="author"
+                className="text-blue-700 text-lg font-semibold cursor-pointer dark:text-blue-400 hover:no-underline"
+              >
+                {dailyAuthor}
+              </p>
+            </div>
+
+            <div className="text-md font-semibold text-left cursor-pointer">
+              {dailyTags.length !== 0 &&
+                dailyTags.map((tag, i) => {
+                  return (
+                    <p
+                      key={i}
+                      className="text-blue-700  inline-block mx-2"
+                    >{`#${tag.name}`}</p>
+                  );
+                })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex content-center">
+            <Loading className="my-8" />
+          </div>
+        )}
 
         <br />
         <br />
