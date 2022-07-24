@@ -63,7 +63,7 @@ export const SideBar = () => {
       {
         <div
           id="sidebar"
-          className="fixed z-30 inset-y-0 left-0 w-64 transition duration-700 transform flex flex-col h-screen py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600 overflow-y-auto overflow-x-hidden border-gray-300 rounded-lg "
+          className="border-r border-gray-200 fixed z-30 inset-y-0 left-0 w-64 transition duration-700 transform flex flex-col h-screen py-8 bg-white  dark:bg-gray-800 dark:border-gray-600 overflow-y-auto overflow-x-hidden rounded-lg "
           onClick={sideBarChangeStatus}
           onMouseLeave={hiddeSideBar}
         >

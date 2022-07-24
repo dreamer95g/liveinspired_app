@@ -8,8 +8,14 @@ import { LOGOUT } from "../../graphql/mutations/AuthMutations";
 import { useSelector, useDispatch } from "react-redux";
 import { Loading } from "../ui/Loading";
 import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
+import { Redirect } from "react-router-dom";
 
-export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
+export const ConfigModal = ({
+  showConfigModal,
+  setShowConfigModal,
+  history,
+  handleLogout,
+}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [directory, setDirectory] = useState("");
@@ -19,6 +25,7 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
   const { loading } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
+  const [goToLogin, setGoToLogin] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -88,8 +95,10 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
             "Datos restaurados de forma satisfactoria!"
           );
           handleOk();
-          // handleLogout();
+
           dispatch(finishLoadingAction());
+          history.push("/auth/login");
+          handleLogout();
         } else {
           openNotification(
             "error",
@@ -139,12 +148,12 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <div className="content-center flex">
+          <div className="flex content-center text-center ">
             {!loading && (
-              <>
+              <div className="mx-auto flex text-center ">
                 <button
                   onClick={backup}
-                  className="mx-auto flex  w-1/3 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-blue-500 focus:outline-none hover:bg-blue-400 text-white"
+                  className="bg-gradient-to-r from-blue-700 to-blue-400 flex w-44 mx-auto px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
                   type="button"
                 >
                   <svg
@@ -166,7 +175,7 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
 
                 <button
                   onClick={restore}
-                  className="flex w-1/3 mx-auto px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 focus:outline-none hover:bg-green-400 text-white"
+                  className="bg-gradient-to-r from-indigo-600 to-indigo-400  flex w-44 mx-auto px-4 py-2 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
                   type="button"
                 >
                   <svg
@@ -185,7 +194,7 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
                   </svg>
                   <span className="mx-1">Restaurar</span>
                 </button>
-              </>
+              </div>
             )}
           </div>,
         ]}
@@ -194,15 +203,15 @@ export const ConfigModal = ({ showConfigModal, setShowConfigModal }) => {
         <div className="my-8 ">
           {!loading ? (
             <>
-              <label className="text-md mx-4">
+              <label className="font-semibold mx-4 ">
                 Directorio ( \ ) o Backup SQL:
               </label>
               <br />
               <Input
                 value={directory}
                 onChange={handleInputDirectoryChange}
-                placeholder="Directorio o Backup SQL"
-                style={{ width: "300px", borderRadius: "10px" }}
+                placeholder="Ej. C:\Users\gabry\Desktop\"
+                style={{ width: "450px", borderRadius: "10px" }}
               />
             </>
           ) : (

@@ -103,8 +103,8 @@ export const TagList = ({ history }) => {
             refetchTags();
             openNotification(
               "success",
-              "Etiqueta modificada",
-              `La Etiqueta ${name} fue modificada satisfactoriamente`
+              "Etiqueta editada",
+              `La Etiqueta ${name} fue editada satisfactoriamente`
             );
           });
         } catch (error) {
@@ -208,7 +208,8 @@ export const TagList = ({ history }) => {
   }, [tagsFromServer]);
 
   return (
-    <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg  dark:bg-gray-800">
       {loading === false ? (
         <div>
           <h1 className="flex text-2xl my-2">
@@ -232,7 +233,7 @@ export const TagList = ({ history }) => {
 
           <div className="flex mx-auto my-8">
             <button
-              className="flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 hover:bg-green-400  focus:outline-none text-white"
+              className="bg-gradient-to-r from-green-600 to-green-400 flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-green-400  focus:outline-none text-white"
               type="button"
               onClick={() => {
                 setShowModal(true);
@@ -279,7 +280,7 @@ export const TagList = ({ history }) => {
                   );
                 }
               }}
-              className="flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent hover:bg-blue-400 bg-blue-500 focus:outline-none outline-none text-white"
+              className="bg-gradient-to-r from-blue-600 to-blue-400 flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent hover:bg-blue-400  focus:outline-none outline-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -295,14 +296,14 @@ export const TagList = ({ history }) => {
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
-              <span className="mx-1">Modificar</span>
+              <span className="mx-1">Editar</span>
             </button>
 
             <button
               onClick={() => {
                 openNotificationDelete();
               }}
-              className="flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-red-500 hover:bg-red-400 focus:outline-none text-white"
+              className="bg-gradient-to-r from-red-600 to-red-400 flex mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-red-400 focus:outline-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

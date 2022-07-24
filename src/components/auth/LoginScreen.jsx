@@ -1,6 +1,6 @@
 import { useForm } from "../../hooks/useForm";
 import { LogInAction } from "../../actions/auth";
-import { Loading } from "../ui/Loading";
+import { LoadingLogin } from "./LoadingLogin";
 import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
 
 //importar las queries y mutations
@@ -98,7 +98,7 @@ export const LoginScreen = ({ history }) => {
 
   return (
     <div>
-      <div className=" border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20 bg-white rounded-md shadow-lg dark:bg-gray-800">
+      <div className="bg-gradient-to-r from-indigo-700 to-indigo-400 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-md shadow-lg dark:bg-gray-800">
         <img
           id="image"
           src={`${url_base}assets/images/logo.png`}
@@ -112,7 +112,7 @@ export const LoginScreen = ({ history }) => {
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm text-gray-800 dark:text-gray-200"
+                  className="block text-sm text-white dark:text-gray-200"
                 >
                   Usuario
                 </label>
@@ -121,7 +121,7 @@ export const LoginScreen = ({ history }) => {
                   value={username}
                   name="username"
                   onChange={handleInputChange}
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border rounded-full dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export const LoginScreen = ({ history }) => {
                 <div className="flex items-center justify-between">
                   <label
                     htmlFor="password"
-                    className="block text-sm text-gray-800 dark:text-gray-200"
+                    className="block text-sm text-white dark:text-gray-200"
                   >
                     Contraseña
                   </label>
@@ -140,24 +140,25 @@ export const LoginScreen = ({ history }) => {
                   value={password}
                   name="password"
                   onChange={handleInputChange}
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  className=" block w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border rounded-full dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 />
               </div>
+              <br />
 
               <div className="mt-6">
                 <button
                   onClick={handleLogin}
-                  className="w-full px-4 py-2 tracking-wide text-white text-lg font-bold transition-colors duration-200 transform bg-indigo-600 rounded-full hover:bg-indigo-400 focus:outline-none focus:bg-gray-400"
+                  className="bg-gradient-to-r from-blue-700 to-blue-400 w-full px-4 py-2 tracking-wide text-white text-lg font-bold transition-colors duration-200 transform rounded-full hover:bg-indigo-600 focus:outline-none focus:bg-blue-600"
                 >
                   Login
                 </button>
               </div>
-
+              <br />
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
                 <p
                   href="#"
-                  className="cursor-pointer text-xs hover:text-blue-700 text-center text-gray-600 uppercase dark:text-gray-400"
+                  className="font-bold cursor-pointer text-xs hover:text-gray-300 text-center text-white uppercase dark:text-gray-400"
                 >
                   {`Live Inspired ${new Date().getFullYear()}`}
                 </p>
@@ -165,7 +166,10 @@ export const LoginScreen = ({ history }) => {
               </div>
             </div>
           ) : (
-            <Loading />
+            <>
+              <LoadingLogin />
+              <br />
+            </>
           )}
         </form>
       </div>

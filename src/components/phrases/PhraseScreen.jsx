@@ -8,6 +8,8 @@ import { notification } from "antd";
 import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
 import { Loading } from "../ui/Loading";
 import { useDispatch, useSelector } from "react-redux";
+import { Input } from "antd";
+const { TextArea } = Input;
 
 export const PhraseScreen = ({ history }) => {
   const { id } = useParams();
@@ -73,7 +75,8 @@ export const PhraseScreen = ({ history }) => {
 
   return (
     <div>
-      <div className="border-2 border-gray-50 container px-8 py-4 mx-auto bg-white rounded-xl shadow-lg dark:bg-gray-800">
+      {/* <div className="border-2 border-gray-50 container px-8 py-4 mx-auto bg-white rounded-xl shadow-lg dark:bg-gray-800"> */}
+      <div className="container px-8 py-4 mx-auto bg-white rounded-xl  dark:bg-gray-800">
         {!loading ? (
           <div className="animate__animated animate__fadeIn">
             <div className="content-center text-center my-6 ">
@@ -107,7 +110,22 @@ export const PhraseScreen = ({ history }) => {
                   </div>
                   <br />
 
-                  <p className="text-lg text-center">{text}</p>
+                  {/* <p className="text-lg text-center">{text}</p> */}
+                  <div className="mx-auto text-center content-center">
+                    <TextArea
+                      value={text}
+                      style={{
+                        width: "550px",
+                        borderRadius: "10px",
+                        paddingTop: "15px",
+                        paddingBottom: "15px",
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+                        disabled: true,
+                      }}
+                      autoSize
+                    />
+                  </div>
                 </blockquote>
               </div>
 
@@ -148,7 +166,7 @@ export const PhraseScreen = ({ history }) => {
               <div className="flex mx-auto ">
                 <button
                   onClick={goBack}
-                  className="flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-indigo-500 hover:bg-indigo-400  focus:outline-none "
+                  className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-indigo-400  focus:outline-none "
                   type="button"
                 >
                   <svg
@@ -171,7 +189,7 @@ export const PhraseScreen = ({ history }) => {
                   onClick={() => {
                     history.push("/dashboard/search");
                   }}
-                  className="flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-blue-500 hover:bg-blue-400  focus:outline-none "
+                  className="bg-gradient-to-r from-blue-600 to-blue-400 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-blue-400  focus:outline-none "
                   type="button"
                 >
                   <svg

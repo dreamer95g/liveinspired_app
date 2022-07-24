@@ -80,18 +80,18 @@ export const Header = ({ history }) => {
 
   return (
     <>
-      <nav className="  dark:bg-gray-800 border-b-4 border-indigo-500">
+      <nav className=" dark:bg-gray-800 border-b-4 border-gray-200 bg-gradient-to-r from-indigo-600 to-blue-600">
         <div className="container px-35 py-4 mx-auto ">
           <div className="flex md:justify-between">
             <div className="flex float-left w-12" onClick={sideBarChangeStatus}>
               <div className="flex ">
                 <button
                   type="button"
-                  className=" dark:text-gray-200 hover:text-blue-600 dark:hover:text-gray-400 focus:outline-none  dark:focus:text-gray-400"
+                  className="font-bold text-white hover:text-gray-300 dark:hover:text-gray-400 focus:outline-none  dark:focus:text-gray-400"
                   aria-label="toggle menu"
                 >
                   <svg
-                    className="h-6 w-6"
+                    className="h-6 w-6 font-bold"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -108,12 +108,12 @@ export const Header = ({ history }) => {
               </div>
             </div>
 
-            <div className="flex  float-right ml-auto">
+            <div className="flex  float-right ml-auto ">
               <div className="flex ">
-                <div className="relative">
+                <div className="relative ">
                   <div
                     onClick={handleDropDownVisibility}
-                    className=" relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none cursor-pointer"
+                    className="bg-transparent relative z-10 flex items-center p-2 text-sm text-gray-600 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none cursor-pointer"
                   >
                     <button className=" flex mx-auto my-auto hover:text-blue-600  font-semibold outline-none ">
                       {avatar !== "" ? (
@@ -292,6 +292,8 @@ export const Header = ({ history }) => {
             <ConfigModal
               showConfigModal={showConfigModal}
               setShowConfigModal={setShowConfigModal}
+              history={history}
+              handleLogout={handleLogout}
             />
           </div>
         </div>

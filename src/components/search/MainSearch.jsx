@@ -197,7 +197,8 @@ export const MainSearch = ({ history }) => {
   }, [tagsFromServer]);
 
   return (
-    <div className=" border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    // <div className=" border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg dark:bg-gray-800">
       <div className="text-center content-center text-lg my-4 ">
         <nav className="flex ">
           <div className="mx-auto flex">
@@ -229,7 +230,7 @@ export const MainSearch = ({ history }) => {
           </Select>
           <button
             onClick={search}
-            className="flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-blue-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-blue-500 focus:outline-none text-white"
+            className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-indigo-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none text-white"
             type="button"
           >
             <svg

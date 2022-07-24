@@ -67,7 +67,7 @@ export const TagModal = ({
       if (action === "save") {
         setTitle("Agregar Etiqueta");
       } else {
-        setTitle("Modificar Etiqueta");
+        setTitle("Editar Etiqueta");
         setName(tag);
       }
     }
@@ -77,7 +77,7 @@ export const TagModal = ({
     if (show !== undefined) {
       if (show) {
         if (action === "update") {
-          setTitle("Modificar Etiqueta");
+          setTitle("Editar Etiqueta");
           setName(tag);
         }
 
@@ -105,7 +105,7 @@ export const TagModal = ({
             onClick={handleOk}
             style={{ borderRadius: "100px" }}
           >
-            {action === "save" ? `Agregar` : `Modificar`}
+            {action === "save" ? `Agregar` : `Editar`}
           </Button>,
           <Button
             key="back"

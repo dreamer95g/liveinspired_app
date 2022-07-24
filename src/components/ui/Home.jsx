@@ -121,7 +121,7 @@ export const Home = ({ history }) => {
         {/* -------------------------------------Frase Diaria------------------------------------- */}
 
         {!loading ? (
-          <div className="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-2xl dark:bg-gray-800">
+          <div className="border-b-4 border-t-4 border-r-4 border-l-4 border-indigo-500 max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-2xl dark:bg-gray-800">
             <div className="flex items-center justify-between">
               <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
                 {new Date().toLocaleDateString("es-es", {

@@ -188,7 +188,7 @@ export const NoteForm = ({ history }) => {
         setOldTags([]);
         openNotification(
           "success",
-          "Nota Modificada",
+          "Nota Editada",
           "La nota se ha modificado de forma satisfactoria!"
         );
         dispatch(finishLoadingAction());
@@ -241,7 +241,8 @@ export const NoteForm = ({ history }) => {
   }, [note]);
 
   return (
-    <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg  dark:bg-gray-800">
       {!loading ? (
         <div>
           <div className="text-center my-6 ">
@@ -333,7 +334,7 @@ export const NoteForm = ({ history }) => {
             <div className="flex mx-auto">
               <button
                 onClick={controller}
-                className="flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 focus:outline-none text-white"
+                className="bg-gradient-to-r from-green-600 to-green-400 flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
                 type="button"
               >
                 {action === "save" ? (
@@ -376,7 +377,7 @@ export const NoteForm = ({ history }) => {
               </button>
               <button
                 onClick={goBack}
-                className="flex  w-48 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-blue-500 focus:outline-none hover:bg-blue-400 text-white"
+                className="bg-gradient-to-r from-blue-600 to-blue-400 flex  w-48 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
                 type="button"
               >
                 <svg

@@ -316,7 +316,7 @@ export const ProfileModal = ({
                       setAction("update");
                       setShowPasswordsFields(false);
                     }}
-                    className="flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 focus:outline-none hover:bg-green-400 text-white"
+                    className="bg-gradient-to-r from-green-700 to-green-400 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
                     type="button"
                   >
                     <svg
@@ -333,13 +333,13 @@ export const ProfileModal = ({
                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                       />
                     </svg>
-                    <span className="mx-1">Modificar</span>
+                    <span className="mx-1">Editar</span>
                   </button>
                 )}
                 {action === "update" && (
                   <button
                     onClick={modifyUser}
-                    className="flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-green-500 focus:outline-none hover:bg-green-400 text-white"
+                    className="bg-gradient-to-r from-green-600 to-green-400 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
                     type="button"
                   >
                     <svg
@@ -356,14 +356,14 @@ export const ProfileModal = ({
                         d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
                       />
                     </svg>
-                    <span className="mx-1">Guardar</span>
+                    <span className="mx-1">Editar</span>
                   </button>
                 )}
 
                 {action === "view" && (
                   <button
                     onClick={handleCancel}
-                    className="flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-red-500 focus:outline-none hover:bg-red-400 text-white"
+                    className="bg-gradient-to-r from-red-600 to-red-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-red-400 text-white"
                     type="button"
                   >
                     <svg
@@ -389,7 +389,7 @@ export const ProfileModal = ({
                     onClick={() => {
                       setShowPasswordsFields(!showPasswordsFields);
                     }}
-                    className="flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-indigo-500 focus:outline-none hover:bg-indigo-400 text-white"
+                    className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
                     type="button"
                   >
                     <svg
@@ -416,7 +416,7 @@ export const ProfileModal = ({
                     onClick={() => {
                       setAction("view");
                     }}
-                    className="flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-red-500 focus:outline-none hover:bg-red-400 text-white"
+                    className="bg-gradient-to-r from-red-600 to-red-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none hover:bg-red-400 text-white"
                     type="button"
                   >
                     <svg

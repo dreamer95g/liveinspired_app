@@ -5,7 +5,7 @@ export const Loading = () => {
   return (
     <>
       <div className="sk-chase content-center mx-auto my-8">
-        <div className="sk-chase-dot "></div>
+        <div className="sk-chase-dot"></div>
         <div className="sk-chase-dot"></div>
         <div className="sk-chase-dot"></div>
         <div className="sk-chase-dot"></div>
