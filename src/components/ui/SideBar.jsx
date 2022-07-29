@@ -196,7 +196,7 @@ export const SideBar = () => {
                   />
                 </svg>
 
-                <span className="mx-4 font-medium">Etiquetas</span>
+                <span className="mx-4 font-medium">Palabras Clave</span>
               </Link>
             </nav>
           </div>

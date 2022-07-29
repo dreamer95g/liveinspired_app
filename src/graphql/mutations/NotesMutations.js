@@ -1,8 +1,15 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_NOTE = gql`
-  mutation ($date: Date, $text: String!, $tags: [ID]) {
-    createNote(input: { date: $date, text: $text, tags: { connect: $tags } }) {
+  mutation ($date: Date, $text: String!, $tags: [ID], $user: ID) {
+    createNote(
+      input: {
+        date: $date
+        text: $text
+        tags: { connect: $tags }
+        user: { connect: $user }
+      }
+    ) {
       id
     }
   }

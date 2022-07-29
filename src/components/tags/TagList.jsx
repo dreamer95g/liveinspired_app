@@ -20,6 +20,8 @@ import { TagModal } from "./TagModal";
 import { data } from "autoprefixer";
 
 export const TagList = ({ history }) => {
+  const { id: user_id } = useSelector((state) => state.auth);
+
   const [tags, setTags] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [tagName, setTagName] = useState("");
@@ -30,7 +32,9 @@ export const TagList = ({ history }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
 
-  const { data: tagsFromServer } = useQuery(TAGS);
+  const { data: tagsFromServer } = useQuery(TAGS, {
+    variables: { user_id: user_id },
+  });
 
   const [updateTag] = useMutation(UPDATE_TAG);
   const [deleteTag] = useMutation(DELETE_TAG);
@@ -39,7 +43,7 @@ export const TagList = ({ history }) => {
 
   const refetchTags = async () => {
     await apollo_client.refetchQueries({
-      include: "active",
+      include: [TAGS],
     });
     dispatch(finishLoadingAction());
   };
@@ -52,7 +56,9 @@ export const TagList = ({ history }) => {
     });
   };
 
-  const fillContactsData = (tagsFromServer) => {
+  const fillTagsData = (tagsFromServer) => {
+    console.log(tagsFromServer);
+
     setTags([]);
 
     tagsFromServer.forEach((tag) => {
@@ -75,13 +81,14 @@ export const TagList = ({ history }) => {
         await createTag({
           variables: {
             name: name,
+            user: user_id,
           },
         }).then((data) => {
           refetchTags();
           openNotification(
             "success",
-            "Etiqueta agregada",
-            `La Etiqueta ${name} fue agregada satisfactoriamente`
+            "Palabra Clave agregada",
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`
           );
         });
       } catch (error) {
@@ -103,8 +110,8 @@ export const TagList = ({ history }) => {
             refetchTags();
             openNotification(
               "success",
-              "Etiqueta editada",
-              `La Etiqueta ${name} fue editada satisfactoriamente`
+              "Palabra Clave editada",
+              `La Palabra Clave ${name} fue editada satisfactoriamente`
             );
           });
         } catch (error) {
@@ -112,7 +119,11 @@ export const TagList = ({ history }) => {
         }
       }
     } else {
-      openNotification(`success`, `Atención!`, `Selecione una Etiqueta!!!`);
+      openNotification(
+        `success`,
+        `Atención!`,
+        `Selecione una Palabra Clave!!!`
+      );
     }
   };
 
@@ -128,8 +139,8 @@ export const TagList = ({ history }) => {
         refetchTags();
         openNotification(
           "success",
-          "Etiqueta eliminada",
-          `La Etiqueta fue eliminada satisfactoriamente`
+          "Palabra Clave eliminada",
+          `La Palabra Clave fue eliminada satisfactoriamente`
         );
         //dispatch(finishLoadingAction());
       });
@@ -145,8 +156,8 @@ export const TagList = ({ history }) => {
           // console.log(data);
           openNotification(
             "success",
-            "Etiqueta eliminada",
-            `Las etiquetas fueron eliminadas satisfactoriamente`
+            "Palabra Clave eliminada",
+            `Las palabras clave fueron eliminadas satisfactoriamente`
           );
           clean();
           // dispatch(finishLoadingAction());
@@ -157,7 +168,11 @@ export const TagList = ({ history }) => {
         // dispatch(finishLoadingAction());
       }
     } else {
-      openNotification("warning", "Atención!!", `Seleccione una Etiqueta!`);
+      openNotification(
+        "warning",
+        "Atención!!",
+        `Seleccione una Palabra Clave!`
+      );
     }
   };
 
@@ -182,7 +197,7 @@ export const TagList = ({ history }) => {
       );
       notification.open({
         message: "Atención!",
-        description: "Esta seguro que desea eliminar la Etiqueta?",
+        description: "Esta seguro que desea eliminar la Palabra Clave?",
         btn,
         key,
       });
@@ -190,7 +205,7 @@ export const TagList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una Etiqueta!"
+        "Debe seleccionar al menos una Palabra Clave!"
       );
     }
   };
@@ -201,9 +216,9 @@ export const TagList = ({ history }) => {
   }, []);
   useEffect(() => {
     if (tagsFromServer !== undefined) {
-      const { tags } = tagsFromServer;
+      const { Tags } = tagsFromServer;
       //console.table(tags);
-      fillContactsData(tags);
+      fillTagsData(Tags);
     }
   }, [tagsFromServer]);
 
@@ -213,7 +228,7 @@ export const TagList = ({ history }) => {
       {loading === false ? (
         <div>
           <h1 className="flex text-2xl my-2">
-            <p className="mx-2 ">Lista de etiquetas</p>
+            <p className="mx-2 ">Lista de Palabras Clave</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className=" my-2 h-6 w-6"
@@ -276,7 +291,7 @@ export const TagList = ({ history }) => {
                   openNotification(
                     "warning",
                     "Atención!",
-                    "Debe seleccionar una Etiqueta!"
+                    "Debe seleccionar una Palabra Clave!"
                   );
                 }
               }}
@@ -334,7 +349,7 @@ export const TagList = ({ history }) => {
             ) : (
               <div className="mx-auto my-6 content-center text-center animate__animated animate__fadeIn">
                 <h1 className=" text-xl text-center my-4">
-                  No hay etiquetas en la base de datos aun.
+                  No hay palabras clave en la base de datos aun.
                 </h1>
                 <p
                   onClick={() => {
@@ -343,7 +358,7 @@ export const TagList = ({ history }) => {
                   }}
                   className="animate-pulse font-semibold text-2xl cursor-pointer text-md text-blue-700 text-center content-center my-4  hover:underline"
                 >
-                  Agregar Etiqueta +
+                  Agregar Palabra Clave +
                 </p>
               </div>
             )}

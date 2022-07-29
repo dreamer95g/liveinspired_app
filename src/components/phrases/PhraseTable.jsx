@@ -91,7 +91,7 @@ export const PhraseTable = ({ phraseList, setSelectedIds, tagFilter }) => {
       sorter: (a, b) => a.author.length - b.author.length,
     },
     {
-      title: "Etiquetas",
+      title: "Palabras Clave",
       dataIndex: "tags",
       filters: tagFilter,
 

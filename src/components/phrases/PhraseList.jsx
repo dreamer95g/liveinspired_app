@@ -18,12 +18,18 @@ import { useDispatch, useSelector } from "react-redux";
 export const PhraseList = ({ history }) => {
   // ---------------------------DECLARACIONES------------------------------------------//
 
-  const { data: phraseFromServer } = useQuery(PHRASES);
+  const { id: user_id } = useSelector((state) => state.auth);
+
+  const { data: phraseFromServer } = useQuery(PHRASES, {
+    variables: { user_id: user_id },
+  });
 
   const [deletePhrase] = useMutation(DELETE_PHRASE);
   const [deletePhrases] = useMutation(DELETE_PHRASES);
 
-  const [getTags, { data: tagsFromServer }] = useLazyQuery(TAGS);
+  const { data: tagsFromServer } = useQuery(TAGS, {
+    variables: { user_id: user_id },
+  });
 
   const [phraseList, setPhraseList] = useState([]);
   const [phrases, setPhrases] = useState([]);
@@ -112,8 +118,8 @@ export const PhraseList = ({ history }) => {
 
   const clean = () => {
     setSelectedIds([]);
-    setPhraseList([]);
-    setPhrases([]);
+    //setPhraseList([]);
+    //setPhrases([]);
     refetchPhrases();
   };
 
@@ -151,8 +157,10 @@ export const PhraseList = ({ history }) => {
 
   const refetchPhrases = async () => {
     await apollo_client.refetchQueries({
-      include: [PHRASES],
+      include: [PHRASES, TAGS],
+      // include: "active",
     });
+
     dispatch(finishLoadingAction());
   };
 
@@ -197,6 +205,7 @@ export const PhraseList = ({ history }) => {
   };
 
   // -----------------------------EFFECTS------------------------------------//
+
   useEffect(() => {
     if (phraseFromServer !== undefined) {
       const { Phrases } = phraseFromServer;
@@ -209,11 +218,11 @@ export const PhraseList = ({ history }) => {
 
   useEffect(() => {
     if (tagsFromServer !== undefined) {
-      const { tags } = tagsFromServer;
+      const { Tags } = tagsFromServer;
 
       let tagFilt = [];
 
-      tags.forEach((tag) => {
+      Tags.forEach((tag) => {
         const elem = {
           text: tag.name,
           value: tag.name,
@@ -233,9 +242,8 @@ export const PhraseList = ({ history }) => {
   }, [phraseList]);
 
   //RECARGAR LAS QUERIES
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(startLoadingAction());
-    getTags();
     refetchPhrases();
   }, []);
 
@@ -246,7 +254,7 @@ export const PhraseList = ({ history }) => {
         <div className="overflow-hidden ">
           <div>
             <h1 className="flex text-2xl my-1">
-              <p className="mx-2 ">Lista de las frases</p>
+              <p className="mx-2 ">Lista de las Frases</p>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"

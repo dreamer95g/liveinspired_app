@@ -17,13 +17,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const NoteList = ({ history }) => {
   // ---------------------------DECLARACIONES------------------------------------------//
+  const { id: user_id } = useSelector((state) => state.auth);
 
-  const { data: notesFromServer } = useQuery(NOTES);
+  const { data: notesFromServer } = useQuery(NOTES, {
+    variables: { user_id: user_id },
+  });
 
   const [deleteNote] = useMutation(DELETE_NOTE);
   const [deleteNotes] = useMutation(DELETE_NOTES);
 
-  const [getTags, { data: tagsFromServer }] = useLazyQuery(TAGS);
+  const { data: tagsFromServer } = useQuery(TAGS, {
+    variables: { user_id: user_id },
+  });
 
   const [noteList, setNoteList] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -113,8 +118,6 @@ export const NoteList = ({ history }) => {
 
   const clean = () => {
     setSelectedIds([]);
-    setNoteList([]);
-    setNotes([]);
     refetchNotes();
   };
 
@@ -152,7 +155,7 @@ export const NoteList = ({ history }) => {
 
   const refetchNotes = async () => {
     await apollo_client.refetchQueries({
-      include: [NOTES],
+      include: [NOTES, TAGS],
     });
     dispatch(finishLoadingAction());
   };
@@ -210,11 +213,11 @@ export const NoteList = ({ history }) => {
 
   useEffect(() => {
     if (tagsFromServer !== undefined) {
-      const { tags } = tagsFromServer;
+      const { Tags } = tagsFromServer;
 
       let tagFilt = [];
 
-      tags.forEach((tag) => {
+      Tags.forEach((tag) => {
         const elem = {
           text: tag.name,
           value: tag.name,
@@ -236,7 +239,7 @@ export const NoteList = ({ history }) => {
   //RECARGAR LAS QUERIES
   useEffect(() => {
     dispatch(startLoadingAction());
-    getTags();
+
     refetchNotes();
   }, []);
 
@@ -247,7 +250,7 @@ export const NoteList = ({ history }) => {
         <div className="overflow-hidden ">
           <div>
             <h1 className="flex text-2xl my-1">
-              <p className="mx-2 ">Lista de las notas</p>
+              <p className="mx-2 ">Lista de las Notas</p>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"

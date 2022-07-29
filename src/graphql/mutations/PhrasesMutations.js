@@ -1,9 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_PHRASE = gql`
-  mutation ($text: String!, $author: String, $tags: [ID]) {
+  mutation ($text: String!, $author: String, $tags: [ID], $user: ID) {
     createPhrase(
-      input: { text: $text, author: $author, tags: { connect: $tags } }
+      input: {
+        text: $text
+        author: $author
+        tags: { connect: $tags }
+        user: { connect: $user }
+      }
     ) {
       id
     }

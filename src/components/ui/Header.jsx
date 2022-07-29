@@ -80,7 +80,7 @@ export const Header = ({ history }) => {
 
   return (
     <>
-      <nav className=" dark:bg-gray-800 border-b-4 border-gray-200 bg-gradient-to-r from-indigo-600 to-blue-600">
+      <nav className=" dark:bg-gray-800 border-b-4 border-gray-200 bg-gradient-to-r from-indigo-600 to-indigo-500">
         <div className="container px-35 py-4 mx-auto ">
           <div className="flex md:justify-between">
             <div className="flex float-left w-12" onClick={sideBarChangeStatus}>
@@ -115,7 +115,7 @@ export const Header = ({ history }) => {
                     onClick={handleDropDownVisibility}
                     className="bg-transparent relative z-10 flex items-center p-2 text-sm text-gray-600 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none cursor-pointer"
                   >
-                    <button className=" flex mx-auto my-auto hover:text-blue-600  font-semibold outline-none ">
+                    <button className=" flex mx-auto my-auto   font-semibold outline-none ">
                       {avatar !== "" ? (
                         <img
                           className="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
@@ -125,7 +125,7 @@ export const Header = ({ history }) => {
                       ) : (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="mx-1 h-6 w-6"
+                          className="mx-1 h-6 w-6 text-gray-100 hover:text-gray-300"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"

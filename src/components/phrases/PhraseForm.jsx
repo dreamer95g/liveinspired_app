@@ -15,7 +15,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { Button, notification, Select, DatePicker } from "antd";
 
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 
 import validator from "validator";
@@ -28,7 +28,7 @@ const { TextArea } = Input;
 
 export const PhraseForm = ({ history }) => {
   const { id } = useParams();
-
+  const { id: user_id } = useSelector((state) => state.auth);
   const [createPhrase] = useMutation(CREATE_PHRASE);
   const [disconnectForeignKeys] = useMutation(DISCONNECT_FOREIGN_KEYS);
   const [updatePhrase] = useMutation(UPDATE_PHRASE);
@@ -127,6 +127,7 @@ export const PhraseForm = ({ history }) => {
           text: text,
           author: author,
           tags: tags,
+          user: user_id,
         },
       }).then((data) => {
         const { id } = data.data.createPhrase;

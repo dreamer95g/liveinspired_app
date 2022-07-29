@@ -5,6 +5,7 @@ export const LOGIN = gql`
     login(input: { username: $username, password: $password }) {
       access_token
       user {
+        id
         name
         email
         images {
@@ -12,6 +13,26 @@ export const LOGIN = gql`
           name
         }
       }
+    }
+  }
+`;
+
+export const REGISTER = gql`
+  mutation LogIn(
+    $name: String!
+    $email: String!
+    $password: String!
+    $password_confirmation: String!
+  ) {
+    register(
+      input: {
+        name: $name
+        email: $email
+        password: $password
+        password_confirmation: $password_confirmation
+      }
+    ) {
+      status
     }
   }
 `;

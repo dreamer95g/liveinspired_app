@@ -3,11 +3,11 @@ import { TAGS } from "../../graphql/queries/TagsQueries";
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 import { useLazyQuery } from "@apollo/client";
-
+import { useDispatch, useSelector } from "react-redux";
 export const GenericTagsSelect = ({ setTags, selectedTags }) => {
   const [getTags, { data: tagsFromServer }] = useLazyQuery(TAGS);
-
-  let OPTIONS = tagsFromServer !== undefined ? tagsFromServer.tags : [];
+  const { id: user_id } = useSelector((state) => state.auth);
+  let OPTIONS = tagsFromServer !== undefined ? tagsFromServer.Tags : [];
 
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -16,9 +16,10 @@ export const GenericTagsSelect = ({ setTags, selectedTags }) => {
     setSelectedItems(selectedItems);
   };
 
-  const filteredOptions = OPTIONS.filter(
-    (search) => !selectedItems.includes(search)
-  );
+  const filteredOptions =
+    OPTIONS !== undefined
+      ? OPTIONS.filter((search) => !selectedTags.includes(search))
+      : [];
 
   const getTagIdsFromSelectedItems = (selectedItems) => {
     let tagsId = [];
@@ -41,7 +42,7 @@ export const GenericTagsSelect = ({ setTags, selectedTags }) => {
   }, [selectedItems]);
 
   useEffect(() => {
-    getTags();
+    getTags({ variables: { user_id: user_id } });
   }, []);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export const GenericTagsSelect = ({ setTags, selectedTags }) => {
     <div>
       <Select
         mode="multiple"
-        placeholder="Seleccione las Etiquetas"
+        placeholder="Seleccione las palabras clave"
         value={selectedItems}
         onChange={handleChange}
         style={{ borderRadius: "10px", width: "350px" }}

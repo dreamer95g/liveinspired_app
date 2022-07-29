@@ -1,6 +1,6 @@
 import { Slider } from "./Slider";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { NOTES } from "../../graphql/queries/NotesQueries";
 import { PHRASES } from "../../graphql/queries/PhrasesQueries";
 import { notification } from "antd";
@@ -22,14 +22,16 @@ export const Home = ({ history }) => {
     copied: false,
   });
 
-  const { data: notesFromServer } = useQuery(NOTES);
-  const { data: phrasesFromServer } = useQuery(PHRASES);
+  const { id: user_id } = useSelector((state) => state.auth);
+
+  const [getPhrases, { data: phrasesFromServer }] = useLazyQuery(PHRASES);
+
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
 
   const refetch = async () => {
     await apollo_client.refetchQueries({
-      include: [NOTES, PHRASES],
+      include: [PHRASES],
     });
     dispatch(finishLoadingAction());
   };
@@ -65,16 +67,11 @@ export const Home = ({ history }) => {
   };
 
   const copyToClip = () => {
-    let phraseText = document.getElementById("phrase").innerText;
-    let authorText = document.getElementById("author").innerText;
-
-    let phrase = " " + phraseText + "   " + authorText;
-
-    setPhraseToCopy({ value: phrase, copied: true });
+    assignPhraseToCopy();
 
     const { copied } = phraseToCopy;
 
-    if (copied === true) {
+    if (copied) {
       openNotification(
         "success",
         "Frase Copiada",
@@ -83,21 +80,30 @@ export const Home = ({ history }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (notesFromServer !== undefined && notesFromServer !== null) {
-  //     const { Notes } = notesFromServer;
+  const assignPhraseToCopy = () => {
+    let phraseText = document.getElementById("phrase")?.innerText;
+    let authorText = document.getElementById("author")?.innerText;
 
-  //     if (Notes !== null && Notes !== undefined) setNotes(Notes.length);
-  //   }
-  // }, [notesFromServer]);
+    if (phraseText !== undefined) {
+      let phrase = " " + phraseText + "   " + authorText;
 
-  useEffect(() => {
+      setPhraseToCopy({ value: phrase, copied: true });
+    }
+  };
+
+  useEffect(() => {}, [phraseToCopy]);
+
+  useEffect(async () => {
     if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
       const { Phrases } = phrasesFromServer;
 
-      getRandomPhrase(Phrases);
+      await getRandomPhrase(Phrases);
 
-      if (Phrases !== null && Phrases.length !== 0) setPhrases(Phrases.length);
+      if (Phrases !== null && Phrases.length !== 0) {
+        setPhrases(Phrases.length);
+
+        assignPhraseToCopy();
+      }
     }
     // console.log(phrasesFromServer)
   }, [phrasesFromServer]);
@@ -105,7 +111,7 @@ export const Home = ({ history }) => {
   useEffect(() => {
     dispatch(startLoadingAction());
     refetch();
-    setPhraseToCopy({ value: "", copied: false });
+    getPhrases({ variables: { user_id: user_id } });
   }, []);
 
   return (

@@ -92,7 +92,7 @@ export const NoteTable = ({ noteList, setSelectedIds, tagFilter }) => {
       width: "50%",
     },
     {
-      title: "Etiquetas",
+      title: "Palabras Clave",
       dataIndex: "tags",
       filters: tagFilter,
 

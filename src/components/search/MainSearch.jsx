@@ -17,13 +17,13 @@ import { PhraseCard } from "./PhraseCard";
 export const MainSearch = ({ history }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
-
-  const { data: tagsFromServer } = useQuery(TAGS);
+  const { id: user_id } = useSelector((state) => state.auth);
+  const [getTags, { data: tagsFromServer }] = useLazyQuery(TAGS);
 
   const [getNotesByTag, { data: notes }] = useLazyQuery(NOTE_BY_TAG);
   const [getPhrasesByTag, { data: phrases }] = useLazyQuery(PHRASE_BY_TAG);
 
-  let OPTIONS = tagsFromServer !== undefined ? tagsFromServer.tags : [];
+  let OPTIONS = tagsFromServer !== undefined ? tagsFromServer.Tags : [];
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [tags, setTags] = useState([]);
@@ -39,9 +39,10 @@ export const MainSearch = ({ history }) => {
     setSelectedTags(selectedTags);
   };
 
-  const filteredOptions = OPTIONS.filter(
-    (search) => !selectedTags.includes(search)
-  );
+  const filteredOptions =
+    OPTIONS !== undefined
+      ? OPTIONS.filter((search) => !selectedTags.includes(search))
+      : [];
 
   const getTagIdsFromSelectedItems = (selectedTags) => {
     let tagsId = [];
@@ -67,6 +68,7 @@ export const MainSearch = ({ history }) => {
         getNotesByTag({
           variables: {
             tags: tags,
+            user_id: user_id,
           },
         });
       } else {
@@ -76,6 +78,7 @@ export const MainSearch = ({ history }) => {
         getPhrasesByTag({
           variables: {
             tags: tags,
+            user_id: user_id,
           },
         });
       }
@@ -186,11 +189,19 @@ export const MainSearch = ({ history }) => {
   }, [selectedTags]);
 
   useEffect(() => {
+    if (user_id === undefined) console.log("user id undefined");
+
+    getTags({
+      variables: {
+        user_id: user_id,
+      },
+    });
     setShowNotesSection(true);
     refetch();
   }, []);
 
   useEffect(() => {
+    console.log(tagsFromServer);
     if (tagsFromServer !== undefined) {
       OPTIONS = tagsFromServer.tags;
     }
@@ -222,11 +233,12 @@ export const MainSearch = ({ history }) => {
             style={{ width: "350px", borderRadius: "10px" }}
             dropdownStyle={{ borderRadius: "10px" }}
           >
-            {filteredOptions.map((item) => (
-              <Select.Option key={item.id} value={item.name}>
-                {item.name}
-              </Select.Option>
-            ))}
+            {filteredOptions.length !== 0 &&
+              filteredOptions.map((item) => (
+                <Select.Option key={item.id} value={item.name}>
+                  {item.name}
+                </Select.Option>
+              ))}
           </Select>
           <button
             onClick={search}

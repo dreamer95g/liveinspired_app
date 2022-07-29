@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { DashboardLayout } from "../components/ui/DashboardLayout";
-import { LoginScreen } from "../components/auth/LoginScreen";
+import { AuthContainer } from "../components/auth/AuthContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { useLazyQuery, gql } from "@apollo/client";
 import { LogInAction } from "../actions/auth";
@@ -54,9 +54,11 @@ export const AppRouter = () => {
           .then((response) => {
             console.log(response.data.me);
             const access_token = token;
-            const { name, email, images } = response.data.me;
+            const { id, name, email, images } = response.data.me;
 
-            dispatch(LogInAction(access_token, name, email, images[0].name));
+            dispatch(
+              LogInAction(id, access_token, name, email, images[0].name)
+            );
             setIsAuthenticated(true);
           });
       } catch (error) {
@@ -78,7 +80,7 @@ export const AppRouter = () => {
           <div className="my-auto ">
             <Switch>
               {(isAuthenticated === false || isAuthenticated === true) && (
-                <Route exact path="/auth/login" component={LoginScreen} />
+                <Route exact path="/auth/login" component={AuthContainer} />
               )}
 
               {isAuthenticated === true ? (

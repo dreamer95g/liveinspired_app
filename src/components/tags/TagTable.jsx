@@ -77,7 +77,7 @@ export const TagTable = ({ tagsList, setSelectedIds }) => {
 
   const columns = [
     {
-      title: "#Etiqueta",
+      title: "Palabras Clave",
       dataIndex: "name",
       ...getColumnSearchProps("name"),
       defaultSortOrder: "descend",

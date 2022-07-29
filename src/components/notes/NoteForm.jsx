@@ -28,6 +28,7 @@ const { TextArea } = Input;
 
 export const NoteForm = ({ history }) => {
   const { id } = useParams();
+  const { id: user_id } = useSelector((state) => state.auth);
 
   const [createNote] = useMutation(CREATE_NOTE);
   const [disconnectForeignKeys] = useMutation(DISCONNECT_FOREIGN_KEYS);
@@ -128,6 +129,7 @@ export const NoteForm = ({ history }) => {
           date: date,
           text: text,
           tags: tags,
+          user: user_id,
         },
       }).then((data) => {
         const { id } = data.data.createNote;
