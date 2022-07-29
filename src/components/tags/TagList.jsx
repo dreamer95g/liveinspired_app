@@ -57,7 +57,7 @@ export const TagList = ({ history }) => {
   };
 
   const fillTagsData = (tagsFromServer) => {
-    console.log(tagsFromServer);
+    // console.log(tagsFromServer);
 
     setTags([]);
 

@@ -90,10 +90,14 @@ export const Home = ({ history }) => {
       let phrase = " " + phraseText + "   " + authorText;
 
       setPhraseToCopy({ value: phrase, copied: true });
+    } else {
+      alert("phrase html undefined");
     }
   };
 
-  useEffect(() => {}, [phraseToCopy]);
+  useEffect(() => {
+    // console.log(phraseToCopy);
+  }, [phraseToCopy]);
 
   useEffect(async () => {
     if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
@@ -104,7 +108,9 @@ export const Home = ({ history }) => {
       if (Phrases !== null && Phrases.length !== 0) {
         setPhrases(Phrases.length);
 
-        assignPhraseToCopy();
+        setTimeout(() => {
+          assignPhraseToCopy();
+        }, 2000);
       }
     }
     // console.log(phrasesFromServer)

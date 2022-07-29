@@ -84,7 +84,7 @@ export const MainSearch = ({ history }) => {
       }
     } else {
       dispatch(finishLoadingAction());
-      openNotification("warning", "Atención", "Seleccione las Etiquetas");
+      openNotification("warning", "Atención", "Seleccione las Palabras Clave");
     }
   };
 
@@ -189,8 +189,6 @@ export const MainSearch = ({ history }) => {
   }, [selectedTags]);
 
   useEffect(() => {
-    if (user_id === undefined) console.log("user id undefined");
-
     getTags({
       variables: {
         user_id: user_id,
@@ -201,7 +199,7 @@ export const MainSearch = ({ history }) => {
   }, []);
 
   useEffect(() => {
-    console.log(tagsFromServer);
+    // console.log(tagsFromServer);
     if (tagsFromServer !== undefined) {
       OPTIONS = tagsFromServer.tags;
     }
@@ -227,7 +225,7 @@ export const MainSearch = ({ history }) => {
         <div className="flex mx-auto">
           <Select
             mode="multiple"
-            placeholder="Seleccione las etiquetas"
+            placeholder="Seleccione las Palabras Clave"
             value={selectedTags}
             onChange={handleChange}
             style={{ width: "350px", borderRadius: "10px" }}

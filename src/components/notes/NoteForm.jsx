@@ -52,7 +52,7 @@ export const NoteForm = ({ history }) => {
 
   //---------------------------------------HANDLE INPUT CHANGE -------------------------//
   const handleInputDateChange = (date, dateString) => {
-    console.log(date, dateString);
+    // console.log(date, dateString);
     setDate(dateString);
   };
 
