@@ -242,7 +242,7 @@ export const MainSearch = ({ history }) => {
           </Select>
           <button
             onClick={search}
-            className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-indigo-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none text-white"
+            className="bg-gradient-to-r from-blue-600 to-blue-400 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-indigo-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none text-white"
             type="button"
           >
             <svg

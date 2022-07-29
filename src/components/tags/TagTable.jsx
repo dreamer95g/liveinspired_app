@@ -23,7 +23,7 @@ export const TagTable = ({ tagsList, setSelectedIds }) => {
           ref={(node) => {
             searchInput = node;
           }}
-          placeholder={`Busqueda`}
+          placeholder={`Búsqueda`}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])

@@ -24,7 +24,9 @@ export const Home = ({ history }) => {
 
   const { id: user_id } = useSelector((state) => state.auth);
 
-  const [getPhrases, { data: phrasesFromServer }] = useLazyQuery(PHRASES);
+  const { data: phrasesFromServer } = useQuery(PHRASES, {
+    variables: { user_id: user_id },
+  });
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
@@ -111,7 +113,6 @@ export const Home = ({ history }) => {
   useEffect(() => {
     dispatch(startLoadingAction());
     refetch();
-    getPhrases({ variables: { user_id: user_id } });
   }, []);
 
   return (

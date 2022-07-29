@@ -28,7 +28,7 @@ export const TagModal = ({
         saveTag(name);
         setName("");
       } else {
-        openNotification("warning", "Atencion", "Llene la Etiqueta!!");
+        openNotification("warning", "Atencion", "Llene la Palabra Clave!!");
       }
     }
 
@@ -37,7 +37,7 @@ export const TagModal = ({
         modifyTag(name);
         setName("");
       } else {
-        openNotification("warning", "Atencion", "Llene la Etiqueta!!");
+        openNotification("warning", "Atencion", "Llene la Palabra Clave!!");
       }
     }
   };
@@ -65,9 +65,9 @@ export const TagModal = ({
   useEffect(() => {
     if (action !== undefined) {
       if (action === "save") {
-        setTitle("Agregar Etiqueta");
+        setTitle("Agregar Palabra Clave");
       } else {
-        setTitle("Editar Etiqueta");
+        setTitle("Editar Palabra Clave");
         setName(tag);
       }
     }
@@ -77,7 +77,7 @@ export const TagModal = ({
     if (show !== undefined) {
       if (show) {
         if (action === "update") {
-          setTitle("Editar Etiqueta");
+          setTitle("Editar Palabra Clave");
           setName(tag);
         }
 
@@ -118,7 +118,7 @@ export const TagModal = ({
         ]}
       >
         <Input
-          placeholder="Etiqueta"
+          placeholder="Palabra Clave"
           value={name}
           onChange={handleInputNameChange}
           onPressEnter={handleOk}
