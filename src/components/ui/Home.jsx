@@ -90,8 +90,6 @@ export const Home = ({ history }) => {
       let phrase = " " + phraseText + "   " + authorText;
 
       setPhraseToCopy({ value: phrase, copied: true });
-    } else {
-      alert("phrase html undefined");
     }
   };
 
