@@ -8,11 +8,13 @@ import { ProfileModal } from "../profile/ProfileModal";
 import { useMutation } from "@apollo/client";
 import { LOGOUT } from "../../graphql/mutations/AuthMutations";
 import { ConfigModal } from "../config/ConfigModal";
+import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
 
 export const Header = ({ history }) => {
   const [logout] = useMutation(LOGOUT);
 
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.ui);
 
   const { sideBarSate } = useSelector((state) => state.ui);
 
@@ -34,11 +36,13 @@ export const Header = ({ history }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
   const handleLogout = async () => {
+    dispatch(startLoadingAction());
     await logout().then((data) => {
       //   console.log(data);
     });
     dispatch(LogoutAction());
     localStorage.removeItem("_token");
+    dispatch(finishLoadingAction());
   };
 
   const handleDropDownVisibility = () => {

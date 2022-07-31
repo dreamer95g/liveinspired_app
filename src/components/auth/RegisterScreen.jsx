@@ -237,6 +237,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
             </div>
           ) : (
             <>
+              <br />
               <LoadingAuth />
               <br />
             </>

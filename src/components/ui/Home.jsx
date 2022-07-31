@@ -35,7 +35,26 @@ export const Home = ({ history }) => {
     await apollo_client.refetchQueries({
       include: [PHRASES],
     });
-    dispatch(finishLoadingAction());
+  };
+
+  const refresh = async () => {
+    dispatch(startLoadingAction());
+    await refetch();
+
+    if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
+      const { Phrases } = phrasesFromServer;
+
+      await getRandomPhrase(Phrases);
+
+      if (Phrases !== null && Phrases.length !== 0) {
+        setPhrases(Phrases.length);
+
+        setTimeout(() => {
+          assignPhraseToCopy();
+        }, 2000);
+      }
+      dispatch(finishLoadingAction());
+    }
   };
 
   const getRandomInt = (min, max) => {
@@ -93,10 +112,6 @@ export const Home = ({ history }) => {
     }
   };
 
-  useEffect(() => {
-    // console.log(phraseToCopy);
-  }, [phraseToCopy]);
-
   useEffect(async () => {
     if (phrasesFromServer !== undefined && phrasesFromServer !== null) {
       const { Phrases } = phrasesFromServer;
@@ -111,12 +126,13 @@ export const Home = ({ history }) => {
         }, 2000);
       }
     }
-    // console.log(phrasesFromServer)
+    // console.log(phrasesFromServer);
   }, [phrasesFromServer]);
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(startLoadingAction());
-    refetch();
+    await refetch();
+    dispatch(finishLoadingAction());
   }, []);
 
   return (
@@ -144,14 +160,11 @@ export const Home = ({ history }) => {
               </span>
               {phrasesFromServer !== undefined &&
                 phrasesFromServer.Phrases.length !== 0 && (
-                  <CopyToClipboard
-                    text={phraseToCopy.value}
-                    onCopy={copyToClip}
-                  >
-                    <span>
+                  <div className="flex">
+                    <span onClick={refresh}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 cursor-pointer hover:text-blue-600"
+                        className="h-6 w-6 mx-2 cursor-pointer hover:text-blue-600"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -160,11 +173,32 @@ export const Home = ({ history }) => {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                         />
                       </svg>
                     </span>
-                  </CopyToClipboard>
+                    <CopyToClipboard
+                      text={phraseToCopy.value}
+                      onCopy={copyToClip}
+                    >
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 cursor-pointer hover:text-blue-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                          />
+                        </svg>
+                      </span>
+                    </CopyToClipboard>
+                  </div>
                 )}
             </div>
 
@@ -177,7 +211,7 @@ export const Home = ({ history }) => {
                   </h1>
                   <p
                     id="phrase"
-                    className="mt-2 text-lg text-gray-600 dark:text-gray-300"
+                    className="mt-2 text-lg text-gray-600 dark:text-gray-300 text-justify"
                   >
                     {dailyPhrase}
                   </p>

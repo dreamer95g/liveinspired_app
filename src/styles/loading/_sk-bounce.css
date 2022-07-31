@@ -1,3 +1,4 @@
+/* ------------------------------ */
 .spinner {
   margin: 100px auto 0;
   width: 70px;
@@ -7,7 +8,7 @@
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: #ffffff;
+  background-color: #1669f2;
 
   border-radius: 100%;
   display: inline-block;

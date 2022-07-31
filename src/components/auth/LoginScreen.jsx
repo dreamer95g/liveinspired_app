@@ -174,6 +174,7 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
             </div>
           ) : (
             <>
+              <br />
               <LoadingAuth />
               <br />
             </>

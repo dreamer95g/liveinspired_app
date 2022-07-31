@@ -1,13 +1,16 @@
 import React from "react";
-import "../../styles/loading/_sk-chase-dot-login.css";
+import "../../styles/loading/_sk-chase-login.css";
 
 export const LoadingAuth = () => {
   return (
     <>
-      <div className="spinner">
-        <div className="bounce1"></div>
-        <div className="bounce2"></div>
-        <div className="bounce3"></div>
+      <div className="sk-chase content-center mx-auto my-8">
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
       </div>
     </>
   );

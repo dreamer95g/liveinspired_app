@@ -260,7 +260,6 @@ export const MainSearch = ({ history }) => {
           </button>
         </div>
       </div>
-      <br />
 
       {!loading ? (
         <div className="card-columns">
@@ -293,7 +292,7 @@ export const MainSearch = ({ history }) => {
           )}
         </div>
       ) : (
-        <Loading className="my-5" />
+        <Loading />
       )}
 
       <br />
