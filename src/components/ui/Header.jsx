@@ -40,9 +40,9 @@ export const Header = ({ history }) => {
     await logout().then((data) => {
       //   console.log(data);
     });
+    dispatch(finishLoadingAction());
     dispatch(LogoutAction());
     localStorage.removeItem("_token");
-    dispatch(finishLoadingAction());
   };
 
   const handleDropDownVisibility = () => {
