@@ -1,6 +1,6 @@
 <div align="center">
 
-# Live Inspired
+# Live Inspired 1.1 Stable
 
 ## Tecnologías
 
