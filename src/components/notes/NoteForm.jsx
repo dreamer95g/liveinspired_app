@@ -12,8 +12,8 @@ import {
 import { NOTE_BY_ID } from "../../graphql/queries/NotesQueries";
 
 import React, { useState, useEffect } from "react";
-import { useMutation, useLazyQuery } from "@apollo/client";
-import { Button, notification, Select, DatePicker } from "antd";
+import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
+import { notification, Select, DatePicker } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
@@ -24,6 +24,11 @@ import { Input } from "antd";
 import { apollo_client } from "../../config/apollo";
 import moment from "moment/moment";
 
+//ADD TAG
+import { TagModal } from "../tags/TagModal";
+import { CREATE_TAG } from "../../graphql/mutations/TagsMutations";
+import { TAGS } from "../../graphql/queries/TagsQueries";
+// ---------------------------------------------------------------------//
 const { TextArea } = Input;
 
 export const NoteForm = ({ history }) => {
@@ -36,9 +41,19 @@ export const NoteForm = ({ history }) => {
 
   const [getNoteById, { data: note }] = useLazyQuery(NOTE_BY_ID);
 
+  // Add Tag Modal //--------------------------------------------------------//
+  const { data: tagsFromServer } = useQuery(TAGS, {
+    variables: { user_id: user_id },
+  });
+  const [tagName, setTagName] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+
+  //-------------------------------------------------------------------------//
+
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
-
+  const [createTag] = useMutation(CREATE_TAG);
   //------------------------------ATRIBUTOS---------------------------------------------//
   const [action, setAction] = useState("");
   const [date, setDate] = useState("");
@@ -61,6 +76,36 @@ export const NoteForm = ({ history }) => {
   };
 
   //-------------------------------------------FUNCIONES------------------------------//
+
+  const refetchTags = async () => {
+    await apollo_client.refetchQueries({
+      include: [TAGS],
+    });
+    dispatch(finishLoadingAction());
+  };
+
+  // agregar etiquetas si no existen
+  const saveTag = async (name) => {
+    if (name !== "") {
+      try {
+        await createTag({
+          variables: {
+            name: name,
+            user: user_id,
+          },
+        }).then((data) => {
+          refetchTags();
+          openNotification(
+            "success",
+            "Palabra Clave agregada",
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`
+          );
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  };
 
   const refetch = async () => {
     await apollo_client.clearStore({
@@ -326,7 +371,35 @@ export const NoteForm = ({ history }) => {
                     d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                   />
                 </svg>
-                <GenericTagsSelect selectedTags={tagsList} setTags={setTags} />
+                <div className="flex ">
+                  <div className="flex content-center mx-auto">
+                    {" "}
+                    <GenericTagsSelect
+                      selectedTags={tagsList}
+                      setTags={setTags}
+                    />
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-8 w-8 mx-1 my-auto cursor-pointer"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -407,9 +480,18 @@ export const NoteForm = ({ history }) => {
         </div>
       ) : (
         <div>
-          <Loading />
+          <Loading className="my-10" />
         </div>
       )}
+      <TagModal
+        action={"save"}
+        show={showModal}
+        setTagName={setTagName}
+        tag={tagName}
+        setShowModal={setShowModal}
+        saveTag={saveTag}
+        modifyTag={""}
+      />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 import { useLazyQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
+
 export const GenericTagsSelect = ({ setTags, selectedTags }) => {
   const [getTags, { data: tagsFromServer }] = useLazyQuery(TAGS);
   const { id: user_id } = useSelector((state) => state.auth);
@@ -69,7 +70,11 @@ export const GenericTagsSelect = ({ setTags, selectedTags }) => {
         style={{ borderRadius: "10px", width: "350px" }}
       >
         {filteredOptions.map((item) => (
-          <Select.Option key={item.id} value={item.name}>
+          <Select.Option
+            key={item.id}
+            value={item.name}
+            style={{ borderRadius: "10px" }}
+          >
             {item.name}
           </Select.Option>
         ))}

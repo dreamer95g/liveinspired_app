@@ -12,7 +12,7 @@ import {
 import { PHRASE_BY_ID } from "../../graphql/queries/PhrasesQueries";
 
 import React, { useState, useEffect } from "react";
-import { useMutation, useLazyQuery } from "@apollo/client";
+import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import { Button, notification, Select, DatePicker } from "antd";
 
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,11 @@ import { Input } from "antd";
 import { apollo_client } from "../../config/apollo";
 import moment from "moment/moment";
 
+//ADD TAG
+import { TagModal } from "../tags/TagModal";
+import { CREATE_TAG } from "../../graphql/mutations/TagsMutations";
+import { TAGS } from "../../graphql/queries/TagsQueries";
+// ---------------------------------------------------------------------//
 const { TextArea } = Input;
 
 export const PhraseForm = ({ history }) => {
@@ -35,8 +40,19 @@ export const PhraseForm = ({ history }) => {
 
   const [getPhraseById, { data: phrase }] = useLazyQuery(PHRASE_BY_ID);
 
+  // Add Tag Modal //--------------------------------------------------------//
+  const { data: tagsFromServer } = useQuery(TAGS, {
+    variables: { user_id: user_id },
+  });
+  const [tagName, setTagName] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+
+  //-------------------------------------------------------------------------//
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
+
+  const [createTag] = useMutation(CREATE_TAG);
 
   //------------------------------ATRIBUTOS---------------------------------------------//
   const [action, setAction] = useState("");
@@ -59,6 +75,36 @@ export const PhraseForm = ({ history }) => {
   };
 
   //-------------------------------------------FUNCIONES------------------------------//
+
+  const refetchTags = async () => {
+    await apollo_client.refetchQueries({
+      include: [TAGS],
+    });
+    dispatch(finishLoadingAction());
+  };
+
+  // agregar etiquetas si no existen
+  const saveTag = async (name) => {
+    if (name !== "") {
+      try {
+        await createTag({
+          variables: {
+            name: name,
+            user: user_id,
+          },
+        }).then((data) => {
+          refetchTags();
+          openNotification(
+            "success",
+            "Palabra Clave agregada",
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`
+          );
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  };
 
   const refetch = async () => {
     await apollo_client.clearStore({
@@ -330,7 +376,7 @@ export const PhraseForm = ({ history }) => {
                 />
               </div>
 
-              <div className="my-8">
+              <div className="my-8 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-7 w-7 mx-auto my-2"
@@ -345,7 +391,35 @@ export const PhraseForm = ({ history }) => {
                     d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                   />
                 </svg>
-                <GenericTagsSelect selectedTags={tagsList} setTags={setTags} />
+                <div className="flex ">
+                  <div className="flex content-center mx-auto">
+                    {" "}
+                    <GenericTagsSelect
+                      selectedTags={tagsList}
+                      setTags={setTags}
+                    />
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-8 w-8 mx-1 my-auto cursor-pointer"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -355,7 +429,7 @@ export const PhraseForm = ({ history }) => {
             <div className="flex mx-auto">
               <button
                 onClick={controller}
-                className="bg-gradient-to-r from-green-600 to-green-400 flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
+                className="bg-gradient-to-r from-green-600 to-green-400 flex mx-auto w-48  px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
                 type="button"
               >
                 {action === "save" ? (
@@ -426,9 +500,18 @@ export const PhraseForm = ({ history }) => {
         </div>
       ) : (
         <div>
-          <Loading />
+          <Loading className="my-10" />
         </div>
       )}
+      <TagModal
+        action={"save"}
+        show={showModal}
+        setTagName={setTagName}
+        tag={tagName}
+        setShowModal={setShowModal}
+        saveTag={saveTag}
+        modifyTag={""}
+      />
     </div>
   );
 };

@@ -149,13 +149,10 @@ export const Header = ({ history }) => {
                   {dropDownOpen && (
                     <div
                       onMouseLeave={handleDropDownVisibility}
-                      onClick={handleDropDownVisibility}
+                      // onClick={handleDropDownVisibility}
                       className="border-2 border-gray-50 animate__animated animate__fadeIn  absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
                     >
-                      <a
-                        href="#"
-                        className="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                      >
+                      <a className="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                         {avatar !== "" ? (
                           <img
                             className="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
