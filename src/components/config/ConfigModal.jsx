@@ -175,7 +175,7 @@ export const ConfigModal = ({
 
                 <button
                   onClick={restore}
-                  className="bg-gradient-to-r from-indigo-600 to-indigo-400  flex w-44 mx-auto px-4 py-2 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
+                  className="bg-gradient-to-r from-green-600 to-green-400  flex w-44 mx-auto px-4 py-2 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
                   type="button"
                 >
                   <svg
@@ -204,23 +204,21 @@ export const ConfigModal = ({
           {!loading ? (
             <>
               <label className="font-semibold mx-4 ">
-                Directorio ( \ ) o Backup SQL:
+                Directorio o Ruta de Backup SQL
               </label>
-              <br />
               <Input
                 value={directory}
                 onChange={handleInputDirectoryChange}
-                placeholder="Ej. C:\Users\gabry\Desktop\"
+                placeholder="Ej. C:\Users\gabry\Desktop"
                 style={{ width: "450px", borderRadius: "10px" }}
               />
             </>
           ) : (
             <div className="flex content-center">
-              <Loading className="my-8" />
+              <Loading className="my-auto" />
             </div>
           )}
         </div>
-        <div>{/* <hr className="my-4 "></hr> */}</div>
       </Modal>
     </>
   );
