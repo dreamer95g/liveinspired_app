@@ -224,7 +224,7 @@ export const TagList = ({ history }) => {
 
   return (
     // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-xl dark:bg-gray-800">
-    <div className="border-2 border-gray-50 shadow-2xl overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
+    <div className="animate__animated animate__fadeIn border-2 border-gray-50 shadow-2xl overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
       {loading === false ? (
         <div>
           <h1 className="flex text-2xl my-2  pt-5">

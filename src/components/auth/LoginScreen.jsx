@@ -100,7 +100,7 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-indigo-500 to-blue-500 marker:focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
+      <div className=" animate__animated animate__fadeIn bg-gradient-to-r from-indigo-500 to-blue-500 marker:focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
         {/* <div className="bg-white focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-md shadow-2xl dark:bg-gray-800"> */}
         <img
           id="image"

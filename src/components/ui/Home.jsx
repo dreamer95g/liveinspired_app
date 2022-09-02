@@ -138,17 +138,10 @@ export const Home = ({ history }) => {
   return (
     <div>
       <div className="mt-0">
-        <div className="flex flex-col mt-0">
-          {" "}
-          <div className="my-1 align-middle inline-block min-w-full shadow overflow-hidden rounded-lg sm:rounded-lg ">
-            {/* <Slider /> */}
-          </div>
-        </div>
-
         {/* -------------------------------------Frase Diaria------------------------------------- */}
 
         {!loading ? (
-          <div className="border-b-4 border-t-4 border-r-4 border-l-4 border-indigo-500 max-w-2xl px-8 py-4 mx-auto bg-white rounded-2xl shadow-2xl dark:bg-gray-800">
+          <div className="animate__animated animate__fadeIn my-6 border-b-4 border-t-4 border-r-4 border-l-4 border-indigo-500 max-w-2xl px-8 py-4 mx-auto bg-white rounded-2xl shadow-2xl dark:bg-gray-800">
             <div className="flex items-center justify-between">
               <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
                 {new Date().toLocaleDateString("es-es", {

@@ -67,7 +67,7 @@ export const GenericTagsSelect = ({ setTags, selectedTags }) => {
         placeholder="Seleccione las palabras clave"
         value={selectedItems}
         onChange={handleChange}
-        selectStyle={{ borderRadius: "10px", width: "350px" }}
+        style={{ borderRadius: "10px", width: "350px" }}
         dropdownStyle={{ borderRadius: "10px" }}
       >
         {filteredOptions.map((item) => (

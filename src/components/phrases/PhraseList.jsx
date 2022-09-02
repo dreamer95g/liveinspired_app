@@ -249,7 +249,7 @@ export const PhraseList = ({ history }) => {
 
   return (
     // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-lg dark:bg-gray-800">
-    <div className=" overflow-auto border-2 border-gray-50 shadow-2xl animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl dark:bg-gray-800">
+    <div className="animate__animated animate__fadeIn overflow-auto border-2 border-gray-50 shadow-2xl animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl dark:bg-gray-800">
       {loading === false ? (
         <div className="overflow-hidden ">
           <div>

@@ -245,7 +245,7 @@ export const NoteList = ({ history }) => {
 
   return (
     // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-lg dark:bg-gray-800">
-    <div className="border-2 shadow-2xl border-gray-50 overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
+    <div className="animate__animated animate__fadeIn border-2 shadow-2xl border-gray-50 overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
       {loading === false ? (
         <div className="overflow-hidden ">
           <div>
