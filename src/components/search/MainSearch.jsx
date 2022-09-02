@@ -206,8 +206,8 @@ export const MainSearch = ({ history }) => {
   }, [tagsFromServer]);
 
   return (
-    // <div className=" border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
-    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg dark:bg-gray-800">
+    // <div className=" border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-lg dark:bg-gray-800">
+    <div className="border-2 border-gray-50 shadow-2xl overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl dark:bg-gray-800">
       <div className="text-center content-center text-lg my-4 ">
         <nav className="flex ">
           <div className="mx-auto flex">
@@ -233,14 +233,18 @@ export const MainSearch = ({ history }) => {
           >
             {filteredOptions.length !== 0 &&
               filteredOptions.map((item) => (
-                <Select.Option key={item.id} value={item.name}>
+                <Select.Option
+                  key={item.id}
+                  value={item.name}
+                  style={{ borderRadius: "10px" }}
+                >
                   {item.name}
                 </Select.Option>
               ))}
           </Select>
           <button
             onClick={search}
-            className="bg-gradient-to-r from-blue-600 to-blue-400 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-indigo-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none text-white"
+            className=" bg-blue-600 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-blue-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 focus:outline-none text-white"
             type="button"
           >
             <svg

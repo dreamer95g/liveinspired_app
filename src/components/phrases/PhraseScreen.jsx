@@ -76,17 +76,17 @@ export const PhraseScreen = ({ history }) => {
   return (
     <div>
       {/* <div className="border-2 border-gray-50 container px-8 py-4 mx-auto bg-white rounded-xl shadow-lg dark:bg-gray-800"> */}
-      <div className="container px-8 py-4 mx-auto bg-white rounded-xl  dark:bg-gray-800">
+      <div className="order-2 border-gray-50 shadow-2xl overflow-auto container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
         {!loading ? (
           <div className="animate__animated animate__fadeIn">
             <div className="content-center text-center my-6 ">
               <div className="inline-flex items-center ">
-                <h1 className="text-2xl mx-3 ">Ver frase de </h1>
-                <h1 className="  text-2xl font-semibold text-blue-700 mx-1 ">{` ${author}`}</h1>
+                <h1 className="text-2xl mx-3 pt-5">Ver frase de </h1>
+                <h1 className="  text-2xl font-semibold text-blue-700 mx-1 pt-5">{` ${author}`}</h1>
               </div>
             </div>
 
-            <hr />
+            <hr className="w-1/2 text-center content-center mx-auto" />
 
             <div>
               <div>
@@ -129,7 +129,7 @@ export const PhraseScreen = ({ history }) => {
                 </blockquote>
               </div>
 
-              <hr />
+              <hr className="w-1/2 text-center content-center mx-auto" />
               <div className="">
                 <blockquote className="my-5 mx-5 px-5 py-5">
                   <svg
@@ -160,13 +160,13 @@ export const PhraseScreen = ({ history }) => {
               </div>
             </div>
 
-            <hr />
+            <hr className="w-1/2 text-center content-center mx-auto" />
 
             <div className="my-10 flex content-center w-full ">
               <div className="flex mx-auto ">
                 <button
                   onClick={goBack}
-                  className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-indigo-400  focus:outline-none "
+                  className="bg-gradient-to-r from-green-600 to-green-500 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-indigo-400  focus:outline-none "
                   type="button"
                 >
                   <svg
@@ -189,7 +189,7 @@ export const PhraseScreen = ({ history }) => {
                   onClick={() => {
                     history.push("/dashboard/search");
                   }}
-                  className="bg-gradient-to-r from-blue-600 to-blue-400 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-blue-400  focus:outline-none "
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-blue-400  focus:outline-none "
                   type="button"
                 >
                   <svg

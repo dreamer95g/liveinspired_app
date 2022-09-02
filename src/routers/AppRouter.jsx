@@ -70,7 +70,7 @@ export const AppRouter = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Router>
         {isAuthenticated === "" ? (
           <div className="my-64">
@@ -92,6 +92,6 @@ export const AppRouter = () => {
           </div>
         )}
       </Router>
-    </div>
+    </>
   );
 };

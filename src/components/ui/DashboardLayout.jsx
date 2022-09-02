@@ -6,7 +6,7 @@ import { DashBoardRoutes } from "../../routers/DashBoardRoutes";
 export const DashboardLayout = ({ history }) => {
   return (
     <>
-      <div className="flex h-screen bg-white font-roboto ">
+      <div className="flex h-screen font-roboto ">
         <SideBar />
 
         <div className="flex-1 flex flex-col overflow-hidden ">

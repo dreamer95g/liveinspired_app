@@ -244,12 +244,12 @@ export const NoteList = ({ history }) => {
   }, []);
 
   return (
-    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
-    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg  dark:bg-gray-800">
+    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-lg dark:bg-gray-800">
+    <div className="border-2 shadow-2xl border-gray-50 overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
       {loading === false ? (
         <div className="overflow-hidden ">
           <div>
-            <h1 className="flex text-2xl my-1">
+            <h1 className="flex text-2xl my-1 pl-5 pt-5">
               <p className="mx-2 ">Lista de las Notas</p>
 
               <svg
@@ -273,7 +273,7 @@ export const NoteList = ({ history }) => {
           <div className="flex mx-auto my-8">
             <button
               onClick={goToCreateNote}
-              className="flex mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-gradient-to-r from-green-600 to-green-400 focus:outline-none text-white"
+              className="flex mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-gradient-to-r from-green-600 to-green-500 focus:outline-none text-white"
               type="button"
             >
               <svg
@@ -294,7 +294,7 @@ export const NoteList = ({ history }) => {
             </button>
             <button
               onClick={goToUpdateNote}
-              className="bg-gradient-to-r from-blue-600 to-blue-400 flex mx-1 px-4 py-2 hover:bg-blue-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none outline-none text-white"
+              className="bg-gradient-to-r from-blue-600 to-blue-500 flex mx-1 px-4 py-2 hover:bg-blue-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none outline-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -314,7 +314,7 @@ export const NoteList = ({ history }) => {
             </button>
             <button
               onClick={goToViewNote}
-              className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex mx-1 px-4 py-2 hover:bg-indigo-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
+              className="bg-gradient-to-r from-indigo-600 to-indigo-500 flex mx-1 px-4 py-2 hover:bg-indigo-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -340,7 +340,7 @@ export const NoteList = ({ history }) => {
             </button>
             <button
               onClick={openNotificationDelete}
-              className="flex mx-1 px-4 py-2 hover:bg-red-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-gradient-to-r from-red-600 to-red-400 focus:outline-none text-white"
+              className="flex mx-1 px-4 py-2 hover:bg-red-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent bg-gradient-to-r from-red-600 to-red-500 focus:outline-none text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

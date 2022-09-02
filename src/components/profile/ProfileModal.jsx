@@ -316,7 +316,7 @@ export const ProfileModal = ({
                       setAction("update");
                       setShowPasswordsFields(false);
                     }}
-                    className="bg-gradient-to-r from-green-700 to-green-400 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
+                    className="bg-gradient-to-r from-green-600 to-green-500 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
                     type="button"
                   >
                     <svg
@@ -339,7 +339,7 @@ export const ProfileModal = ({
                 {action === "update" && (
                   <button
                     onClick={modifyUser}
-                    className="bg-gradient-to-r from-green-600 to-green-400 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
+                    className="bg-gradient-to-r from-green-600 to-green-500 flex  w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-green-400 text-white"
                     type="button"
                   >
                     <svg
@@ -363,7 +363,7 @@ export const ProfileModal = ({
                 {action === "view" && (
                   <button
                     onClick={handleCancel}
-                    className="bg-gradient-to-r from-red-600 to-red-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-red-400 text-white"
+                    className="bg-gradient-to-r from-red-600 to-red-500 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-red-400 text-white"
                     type="button"
                   >
                     <svg
@@ -389,7 +389,7 @@ export const ProfileModal = ({
                     onClick={() => {
                       setShowPasswordsFields(!showPasswordsFields);
                     }}
-                    className="bg-gradient-to-r from-indigo-600 to-indigo-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
+                    className="bg-gradient-to-r from-blue-600 to-blue-500 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
                     type="button"
                   >
                     <svg
@@ -416,7 +416,7 @@ export const ProfileModal = ({
                     onClick={() => {
                       setAction("view");
                     }}
-                    className="bg-gradient-to-r from-red-600 to-red-400 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none hover:bg-red-400 text-white"
+                    className="bg-gradient-to-r from-red-600 to-red-500 flex w-full mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent focus:outline-none hover:bg-red-400 text-white"
                     type="button"
                   >
                     <svg

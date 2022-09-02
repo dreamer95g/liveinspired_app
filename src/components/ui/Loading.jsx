@@ -4,10 +4,10 @@ import "../../styles/loading/_sk-bounce.css";
 export const Loading = () => {
   return (
     <>
-      <div className="spinner content-center mx-auto my-6">
-        <div className="bounce1"></div>
-        <div className="bounce2"></div>
-        <div className="bounce3"></div>
+      <div className="spinner content-center mx-auto my-auto pb-16">
+        <div className="bounce1 bg-blue-600"></div>
+        <div className="bounce2 bg-blue-600"></div>
+        <div className="bounce3 bg-blue-600"></div>
       </div>
     </>
   );

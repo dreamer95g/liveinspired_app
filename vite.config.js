@@ -1,14 +1,7 @@
-import {defineConfig} from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-export default ({mode}) => {
-    require('dotenv').config({path: `./.env`});
-    // now you can access config with process.env.{configName}
-
-    return defineConfig({
-        plugins: [reactRefresh()],
-        define: {
-            'process.env': process.env
-        }
-    })
-}
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+});

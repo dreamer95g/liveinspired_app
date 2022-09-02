@@ -127,7 +127,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
   return (
     <div>
       {/* <div className="bg-gradient-to-r from-indigo-700 to-indigo-400 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-md shadow-lg dark:bg-gray-800"> */}
-      <div className="bg-gradient-to-r from-indigo-700 to-indigo-400 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-md shadow-2xl dark:bg-gray-800">
+      <div className="bg-gradient-to-r from-indigo-500 to-blue-500 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
         <img
           id="image"
           src={`${url_base}assets/images/logo.png`}
@@ -216,7 +216,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
               <div className="">
                 <button
                   onClick={handleRegister}
-                  className="bg-gradient-to-r from-indigo-700 to-indigo-500 w-full px-4 py-2 tracking-wide text-white text-lg font-bold transition-colors duration-200 transform rounded-full hover:bg-indigo-600 focus:outline-none focus:bg-blue-600"
+                  className="bg-gradient-to-r from-blue-800 to-blue-600 w-full px-4 py-2 tracking-wide text-white text-lg font-bold transition-colors duration-200 transform rounded-full hover:bg-indigo-600 focus:outline-none focus:bg-blue-600"
                 >
                   Registrarse
                 </button>
@@ -228,7 +228,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
                   onClick={() => {
                     setShowLoginScreen(true);
                   }}
-                  className="font-semibold cursor-pointer text-md hover:text-gray-400 text-center text-white dark:text-gray-400"
+                  className="font-semibold cursor-pointer text-md hover:text-gray-200 text-center text-white dark:text-gray-400"
                 >
                   {`Regresar`}
                 </p>

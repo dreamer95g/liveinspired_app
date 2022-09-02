@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 export const PhraseCard = ({ history, phrase }) => {
   useEffect(() => {}, []);
   return (
-    <div className="animate__animated animate__fadeIn inline-block mx-3 border-2 border-gray-50 max-w-sm p-6 m-auto my-5 bg-white rounded-md shadow-lg dark:bg-gray-800">
+    <div className="animate__animated animate__fadeIn inline-block mx-3 border-2 border-gray-50 max-w-sm p-6 m-auto my-5 bg-white rounded-2xl shadow-2xl dark:bg-gray-800">
       <p
-        className="text-lg dark:text-gray-300  text-justify cursor-pointer hover:text-blue-700"
+        className="p-3 text-lg dark:text-gray-300  text-center cursor-pointer hover:text-blue-700"
         onClick={() => {
           if (phrase.id !== undefined) {
             const { id } = phrase;

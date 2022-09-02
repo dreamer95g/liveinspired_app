@@ -148,12 +148,12 @@ export const ConfigModal = ({
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <div className="flex content-center text-center ">
+          <div className="flex content-center text-center">
             {!loading && (
               <div className="mx-auto flex text-center ">
                 <button
                   onClick={backup}
-                  className="bg-gradient-to-r from-blue-700 to-blue-400 flex w-44 mx-auto px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 flex w-35 mx-auto px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
                   type="button"
                 >
                   <svg
@@ -175,7 +175,7 @@ export const ConfigModal = ({
 
                 <button
                   onClick={restore}
-                  className="bg-gradient-to-r from-green-600 to-green-400  flex w-44 mx-auto px-4 py-2 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
+                  className="bg-gradient-to-r from-green-600 to-green-500  flex w-35 mx-auto px-4 py-2 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-indigo-400 text-white"
                   type="button"
                 >
                   <svg
@@ -198,7 +198,7 @@ export const ConfigModal = ({
             )}
           </div>,
         ]}
-        style={{ textAlign: "center" }}
+        style={{ textAlign: "center", borderRadius: "10px" }}
       >
         <div className="my-8 ">
           {!loading ? (

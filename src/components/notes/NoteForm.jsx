@@ -288,29 +288,29 @@ export const NoteForm = ({ history }) => {
   }, [note]);
 
   return (
-    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
-    <div className=" overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-lg  dark:bg-gray-800">
+    // <div className="border-2 border-gray-50 overflow-hidden animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl shadow-lg dark:bg-gray-800">
+    <div className="border-2 shadow-2xl border-gray-50 overflow-auto animate__animated animate__fadeIn container px-8 py-4 mx-auto bg-white rounded-2xl  dark:bg-gray-800">
       {!loading ? (
         <div>
           <div className="text-center my-6 ">
             {action === "save" ? (
               <div className="content-center">
                 <div className="inline-flex items-center">
-                  <h1 className="text-2xl mx-3 ">Guardar Nota</h1>
-                  <h1 className="  text-2xl font-semibold text-blue-700 mx-1 ">{`${date}`}</h1>
+                  <h1 className="text-2xl mx-3 pt-5 ">Guardar Nota</h1>
+                  <h1 className="  text-2xl font-semibold text-blue-700 mx-1 pt-5 ">{`${date}`}</h1>
                 </div>
               </div>
             ) : (
               <div className="content-center">
                 <div className="inline-flex items-center">
-                  <h1 className="text-2xl mx-3 ">Modificar Nota</h1>
-                  <h1 className="  text-2xl font-semibold text-blue-700 mx-1 ">{`${date}`}</h1>
+                  <h1 className="text-2xl mx-3 pt-5">Modificar Nota</h1>
+                  <h1 className="  text-2xl font-semibold text-blue-700 mx-1 pt-5">{`${date}`}</h1>
                 </div>
               </div>
             )}
           </div>
 
-          <hr />
+          <hr className="w-1/2 text-center content-center mx-auto" />
 
           <div className="animate__animated animate__fadeIn">
             <div className="content-center text-center ">
@@ -323,7 +323,7 @@ export const NoteForm = ({ history }) => {
                 />
               </div>
 
-              <hr />
+              <hr className="w-1/2 text-center content-center mx-auto" />
               <div className="my-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -404,12 +404,12 @@ export const NoteForm = ({ history }) => {
             </div>
           </div>
 
-          <hr />
+          <hr className="w-1/2 text-center content-center mx-auto" />
           <div className="my-10 flex content-center w-full ">
             <div className="flex mx-auto">
               <button
                 onClick={controller}
-                className="bg-gradient-to-r from-green-600 to-green-400 flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
+                className="bg-gradient-to-r from-green-600 to-green-500 flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
                 type="button"
               >
                 {action === "save" ? (
@@ -452,7 +452,7 @@ export const NoteForm = ({ history }) => {
               </button>
               <button
                 onClick={goBack}
-                className="bg-gradient-to-r from-blue-600 to-blue-400 flex  w-48 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 flex  w-48 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
                 type="button"
               >
                 <svg
@@ -480,7 +480,7 @@ export const NoteForm = ({ history }) => {
         </div>
       ) : (
         <div>
-          <Loading className="my-10" />
+          <Loading />
         </div>
       )}
       <TagModal

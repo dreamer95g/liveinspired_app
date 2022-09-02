@@ -84,18 +84,18 @@ export const Header = ({ history }) => {
 
   return (
     <>
-      <nav className=" dark:bg-gray-800 border-b-4 border-gray-200 bg-gradient-to-r from-indigo-600 to-indigo-500">
+      <nav className=" dark:bg-gray-800 border-b-4 border-gray-200 bg-gradient-to-r from-indigo-500 to-blue-500">
         <div className="container px-35 py-4 mx-auto ">
           <div className="flex md:justify-between">
             <div className="flex float-left w-12" onClick={sideBarChangeStatus}>
               <div className="flex ">
                 <button
                   type="button"
-                  className="font-bold text-white hover:text-gray-300 dark:hover:text-gray-400 focus:outline-none  dark:focus:text-gray-400"
+                  className=" font-bold text-white hover:text-gray-200 dark:hover:text-gray-400 focus:outline-none  dark:focus:text-gray-400"
                   aria-label="toggle menu"
                 >
                   <svg
-                    className="h-6 w-6 font-bold"
+                    className="mx-1 h-7 w-7 "
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ export const Header = ({ history }) => {
                       ) : (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="mx-1 h-6 w-6 text-gray-100 hover:text-gray-300"
+                          className=" h-6 w-6 text-gray-100 hover:text-gray-300"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -149,10 +149,10 @@ export const Header = ({ history }) => {
                   {dropDownOpen && (
                     <div
                       onMouseLeave={handleDropDownVisibility}
-                      // onClick={handleDropDownVisibility}
-                      className="border-2 border-gray-50 animate__animated animate__fadeIn  absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
+                      onClick={handleDropDownVisibility}
+                      className="bg-gray-100 border-1 border-gray-200  animate__animated animate__fadeIn  absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden rounded-md shadow-xl dark:bg-gray-800"
                     >
-                      <a className="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                      <a className="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:text-blue-600 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white">
                         {avatar !== "" ? (
                           <img
                             className="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
@@ -190,7 +190,7 @@ export const Header = ({ history }) => {
                       <a
                         onClick={profileModalVisible}
                         href="#"
-                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600  flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600  flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
                       >
                         <svg
                           className="w-5 h-5 mx-1"
@@ -214,7 +214,7 @@ export const Header = ({ history }) => {
                       <a
                         onClick={helpModalVisible}
                         href="#"
-                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
                       >
                         <svg
                           className="w-5 h-5 mx-1"
@@ -234,7 +234,7 @@ export const Header = ({ history }) => {
                       <a
                         onClick={configModalVisible}
                         href="#"
-                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -258,7 +258,7 @@ export const Header = ({ history }) => {
                       <a
                         href="#"
                         onClick={handleLogout}
-                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="border-l-4 border-transparent hover:border-blue-500 hover:text-blue-600 flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
                       >
                         <svg
                           className="w-5 h-5 mx-1"

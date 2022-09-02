@@ -63,7 +63,7 @@ export const SideBar = () => {
       {
         <div
           id="sidebar"
-          className="border-r border-gray-200 fixed z-30 inset-y-0 left-0 w-64 transition duration-700 transform flex flex-col h-screen py-8 bg-white  dark:bg-gray-800 dark:border-gray-600 overflow-y-auto overflow-x-hidden rounded-lg "
+          className="bg-gray-100 border-r border-gray-300 fixed z-30 inset-y-0 left-0 w-64 transition duration-700 transform flex flex-col h-screen py-8   dark:bg-gray-800 dark:border-gray-600 overflow-y-auto overflow-x-hidden rounded-lg "
           onClick={sideBarChangeStatus}
           onMouseLeave={hiddeSideBar}
         >
@@ -84,7 +84,7 @@ export const SideBar = () => {
             <nav>
               <Link
                 to="/dashboard"
-                className="flex items-center px-4 border-l-4 border-transparent hover:border-blue-500 hover:bg-gray-100 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-600"
+                className="flex items-center px-4 border-l-4 border-transparent hover:border-blue-500 hover:bg-gray-200 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-600"
                 href="#"
               >
                 <svg
@@ -106,7 +106,7 @@ export const SideBar = () => {
               </Link>
               <Link
                 to="/dashboard/search"
-                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-600"
+                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-600"
                 href="#"
               >
                 <svg
@@ -128,7 +128,7 @@ export const SideBar = () => {
               </Link>
               <Link
                 to="/dashboard/phrases"
-                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-600"
+                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-600"
                 href="#"
               >
                 <svg
@@ -155,7 +155,7 @@ export const SideBar = () => {
               </Link>
 
               <Link
-                className="border-l-4 border-transparent hover:border-blue-500 flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-700"
+                className="border-l-4 border-transparent hover:border-blue-500 flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-700"
                 to="/dashboard/notes"
               >
                 <svg
@@ -178,7 +178,7 @@ export const SideBar = () => {
 
               <Link
                 to="/dashboard/tags"
-                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-700"
+                className="flex items-center border-l-4 border-transparent hover:border-blue-500 px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-blue-700"
                 href="#"
               >
                 <svg
