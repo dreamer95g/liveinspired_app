@@ -9,7 +9,7 @@ export const NoteCard = ({ history, note }) => {
         onClick={() => {
           if (note.id !== undefined) {
             const { id } = note;
-            history.push(`/dashboard/notes/view/${id}`);
+            history.push(`/dashboard/notes/form/${id}`);
           }
         }}
       >

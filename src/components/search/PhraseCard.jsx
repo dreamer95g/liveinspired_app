@@ -9,7 +9,7 @@ export const PhraseCard = ({ history, phrase }) => {
         onClick={() => {
           if (phrase.id !== undefined) {
             const { id } = phrase;
-            history.push(`/dashboard/phrases/view/${id}`);
+            history.push(`/dashboard/phrases/form/${id}`);
           }
         }}
       >
