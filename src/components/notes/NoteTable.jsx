@@ -80,24 +80,24 @@ export const NoteTable = ({ noteList, setSelectedIds, tagFilter }) => {
       title: "Fecha",
       dataIndex: "date",
       ...getColumnSearchProps("date"),
-      width: "15%",
+      width: "50%",
       // defaultSortOrder: "descend",
       // sorter: (a, b) => a.name.length - b.name.length,
     },
-    {
-      title: "Nota",
-      dataIndex: "text",
-      ...getColumnSearchProps("text"),
-      // filterSearch: true,
-      width: "50%",
-    },
+    // {
+    //   title: "Nota",
+    //   dataIndex: "text",
+    //   ...getColumnSearchProps("text"),
+    //   // filterSearch: true,
+    //   width: "50%",
+    // },
     {
       title: "Palabras Clave",
       dataIndex: "tags",
       filters: tagFilter,
 
       onFilter: (value, record) => record.tags.includes(value),
-      width: "35%",
+      width: "50%",
       filterSearch: true,
 
       render: (tags) => (
