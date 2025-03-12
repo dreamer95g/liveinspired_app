@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { LoginScreen } from "./LoginScreen";
 import { RegisterScreen } from "./RegisterScreen";
+
+
 
 export const AuthContainer = ({ history }) => {
   const [showLoginScreen, setShowLoginScreen] = useState(true);
@@ -8,6 +10,8 @@ export const AuthContainer = ({ history }) => {
   const showLogin = (value) => {
     setShowLoginScreen(value);
   };
+
+
 
   return (
     <div>

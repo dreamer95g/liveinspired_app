@@ -6,27 +6,34 @@ import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
 //importar las queries y mutations
 import { LOGIN } from "../../graphql/mutations/AuthMutations";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { notification } from "antd";
 import { url_base } from "../../config/app";
+
 
 const login_mutation = LOGIN;
 
 export const LoginScreen = ({ setShowLoginScreen, history }) => {
   // mutation hook
   const [login] = useMutation(login_mutation);
-
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
-
   const [formValues, handleInputChange] = useForm({
     username: "",
     password: "",
   });
-
   const { username, password } = formValues;
+  const [token, setToken] = useState("");
+
+  //ESTO SE EJECUTA A PENAS INICIA EL COMPONENTE, PARA COMPORBAR SI YA ESTA EL TOKEN
+  useEffect(() => {
+    const tok =  localStorage.getItem("_token");
+    //console.log(tok);
+    tok !== null ? setToken(tok) : "";
+
+  })
 
   // METODO QUE LANZA LAS NOTIFICACIONES
   const openNotification = (type, message, description) => {
@@ -98,6 +105,8 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
     }
   };
 
+
+
   return (
     <div>
       <div className=" animate__animated animate__fadeIn bg-gradient-to-r from-indigo-500 to-blue-500 marker:focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
@@ -161,23 +170,28 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
               <br />
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/3 border-b dark:border-gray-600 lg:w-1/3"></span>
-                <p
-                  onClick={() => {
-                    setShowLoginScreen(false);
-                  }}
-                  className="font-semibold cursor-pointer text-md hover:text-gray-200 text-center text-white dark:text-gray-400"
+
+                {token !== "" && token !== null ? (<>
+
+                </>) : (<p
+                    onClick={() => {
+                      setShowLoginScreen(false);
+                    }}
+                    className="font-semibold cursor-pointer text-md hover:text-gray-200 text-center text-white dark:text-gray-400"
                 >
                   {`Registrarse`}
-                </p>
+                </p>)}
+
+
                 <span className="w-1/3 border-b dark:border-gray-400 lg:w-1/3"></span>
               </div>
             </div>
           ) : (
-            <>
-              <br />
-              <LoadingAuth />
-              <br />
-            </>
+              <>
+                <br/>
+                <LoadingAuth/>
+                <br/>
+              </>
           )}
         </form>
       </div>

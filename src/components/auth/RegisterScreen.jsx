@@ -23,6 +23,8 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
 
+
+
   const [formValues, handleInputChange] = useForm({
     name: "",
     email: "",
@@ -31,6 +33,8 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
   });
 
   const { name, email, password, password_confirmation } = formValues;
+
+
 
   // METODO QUE LANZA LAS NOTIFICACIONES
   const openNotification = (type, message, description) => {

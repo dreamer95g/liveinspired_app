@@ -87,6 +87,7 @@ export const Home = ({ history }) => {
     });
   };
 
+  //METODO PARA COPIAR
   const copyToClip = () => {
     assignPhraseToCopy();
 
@@ -106,7 +107,7 @@ export const Home = ({ history }) => {
     let authorText = document.getElementById("author")?.innerText;
 
     if (phraseText !== undefined) {
-      let phrase = " " + phraseText + "   " + authorText;
+      let phrase = " " + phraseText + "\n" + authorText;
 
       setPhraseToCopy({ value: phrase, copied: true });
     }
@@ -123,7 +124,7 @@ export const Home = ({ history }) => {
 
         setTimeout(() => {
           assignPhraseToCopy();
-        }, 2000);
+        }, 4000);
       }
     }
     // console.log(phrasesFromServer);
@@ -141,8 +142,9 @@ export const Home = ({ history }) => {
         {/* -------------------------------------Frase Diaria------------------------------------- */}
 
         {!loading ? (
-          <div className="animate__animated animate__fadeIn my-6 border-b-4 border-t-4 border-r-4 border-l-4 border-blue-700 max-w-2xl px-8 py-4 mx-auto bg-white rounded-2xl shadow-2xl dark:bg-gray-800">
-            <div className="flex items-center justify-between">
+            <div
+                className="animate__animated animate__fadeIn my-6 border-b-4 border-t-4 border-r-4 border-l-4 border-blue-700 max-w-2xl px-8 py-4 mx-auto bg-white rounded-2xl shadow-2xl dark:bg-gray-800">
+              <div className="flex items-center justify-between">
               <span className="text-sm font-light text-gray-600 dark:text-gray-400 my-2">
                 {new Date().toLocaleDateString("es-es", {
                   weekday: "long",
@@ -151,103 +153,119 @@ export const Home = ({ history }) => {
                   day: "numeric",
                 })}
               </span>
-              {phrasesFromServer !== undefined &&
-                phrasesFromServer.Phrases.length !== 0 && (
-                  <div className="flex">
+                {phrasesFromServer !== undefined &&
+                    phrasesFromServer.Phrases.length !== 0 && (
+                        <div className="flex">
                     <span onClick={refresh}>
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 mx-2 cursor-pointer hover:text-blue-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                        />
-                      </svg>
-                    </span>
-                    <CopyToClipboard
-                      text={phraseToCopy.value}
-                      onCopy={copyToClip}
-                    >
-                      <span>
-                        <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6 cursor-pointer hover:text-blue-600"
+                          className="h-6 w-6 mx-2 cursor-pointer hover:text-blue-600"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth="2"
-                        >
-                          <path
+                      >
+                        <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                        />
+                      </svg>
+                    </span>
+                          <CopyToClipboard
+                              text={phraseToCopy.value}
+                              onCopy={copyToClip}
+                          >
+                      <span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 cursor-pointer hover:text-blue-600"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
                           />
                         </svg>
                       </span>
-                    </CopyToClipboard>
-                  </div>
+                          </CopyToClipboard>
+                        </div>
+                    )}
+              </div>
+
+              <div className="mt-2">
+                {phrasesFromServer !== undefined &&
+                phrasesFromServer.Phrases.length !== 0 ? (
+                    <>
+                      <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
+                        Frase de Impacto del día
+                      </h1>
+                      <p
+                          id="phrase"
+                          className="mt-2 text-lg text-gray-600 dark:text-gray-300 text-justify"
+                      >
+                        {dailyPhrase}
+                      </p>
+                    </>
+                ) : (
+                    <>
+                      <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
+                        No hay frases que mostrar.
+                      </h1>
+                    </>
                 )}
-            </div>
+              </div>
 
-            <div className="mt-2">
-              {phrasesFromServer !== undefined &&
-              phrasesFromServer.Phrases.length !== 0 ? (
-                <>
-                  <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
-                    Frase de Impacto del día
-                  </h1>
-                  <p
-                    id="phrase"
-                    className="mt-2 text-lg text-gray-600 dark:text-gray-300 text-justify"
-                  >
-                    {dailyPhrase}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h1 className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:no-underline">
-                    No hay frases que mostrar.
-                  </h1>
-                </>
-              )}
-            </div>
+              <div className="flex items-center justify-between mt-4">
+                <p
+                    id="author"
+                    className="text-blue-700 text-lg font-semibold cursor-pointer dark:text-blue-400 hover:no-underline"
+                >
+                  {dailyAuthor}
+                </p>
+              </div>
+              <blockquote className="blockquote-left"  >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 mx-2 my-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                  <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                  />
+                </svg>
+                <div className="text-lg font-semibold text-left cursor-pointer">
 
-            <div className="flex items-center justify-between mt-4">
-              <p
-                id="author"
-                className="text-blue-700 text-lg font-semibold cursor-pointer dark:text-blue-400 hover:no-underline"
-              >
-                {dailyAuthor}
-              </p>
+                  {dailyTags.length !== 0 &&
+                      dailyTags.map((tag, i) => {
+                        return (
+                            <p
+                                key={i}
+                                className="text-blue-800  inline-block mx-1 "
+                            >{`#${tag.name}`}</p>
+                        );
+                      })}
+                </div>
+              </blockquote>
             </div>
-
-            <div className="text-md font-semibold text-left cursor-pointer">
-              {dailyTags.length !== 0 &&
-                dailyTags.map((tag, i) => {
-                  return (
-                    <p
-                      key={i}
-                      className="text-blue-700  inline-block mx-2"
-                    >{`#${tag.name}`}</p>
-                  );
-                })}
-            </div>
-          </div>
-        ) : (
+          ) : (
           <div className="flex content-center">
-            <Loading className="my-8" />
+          <Loading className="my-8"/>
           </div>
-        )}
+          )}
 
-        <br />
-        <br />
-        <br />
+        <br/>
+        <br/>
+        <br/>
 
         {/* <div className="flex flex-wrap content-center">
           <div className="w-full px-6  sm:w-1/2 xl:w-1/3 mx-auto">

@@ -107,6 +107,7 @@ export const NoteForm = ({ history }) => {
     }
   };
 
+  //RECARGAR NUEVAS ETIQUETAS
   const refetch = async () => {
     await apollo_client.clearStore({
       include: [NOTE_BY_ID],
@@ -345,7 +346,7 @@ export const NoteForm = ({ history }) => {
                   onChange={handleInputTextChange}
                   placeholder="Escriba la nota ... "
                   style={{
-                    width: "550px",
+                    width: "700px",
                     borderRadius: "10px",
                     paddingTop: "15px",
                     paddingBottom: "15px",
@@ -409,14 +410,14 @@ export const NoteForm = ({ history }) => {
             <div className="flex mx-auto">
               <button
                 onClick={controller}
-                className="bg-gradient-to-r from-green-600 to-green-500 flex w-48 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
+                className="bg-gradient-to-r from-green-600 to-green-500 flex w-38 mx-1 px-4 py-2 hover:bg-green-400 rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none text-white"
                 type="button"
               >
                 {action === "save" ? (
                   <>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="mx-4 h-6 w-6"
+                      className="mx-1 h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -434,7 +435,7 @@ export const NoteForm = ({ history }) => {
                   <>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="mx-4 h-6 w-6"
+                      className="mx-1 h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -452,12 +453,12 @@ export const NoteForm = ({ history }) => {
               </button>
               <button
                 onClick={goBack}
-                className="bg-gradient-to-r from-blue-600 to-blue-500 flex  w-48 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 flex  w-38 mx-1 px-4 py-2  rounded-full border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  focus:outline-none hover:bg-blue-400 text-white"
                 type="button"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mx-4 h-6 w-6"
+                  className="mx-1 h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

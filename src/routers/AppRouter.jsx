@@ -6,92 +6,91 @@ import {
   Redirect,
 } from "react-router-dom";
 
+
 import { DashboardLayout } from "../components/ui/DashboardLayout";
 import { AuthContainer } from "../components/auth/AuthContainer";
 import { useSelector, useDispatch } from "react-redux";
-import { useLazyQuery, gql } from "@apollo/client";
+import {useLazyQuery, gql, useMutation, useQuery} from "@apollo/client";
 import { LogInAction } from "../actions/auth";
 
 import { ME } from "../graphql/queries/AuthQueries";
 import { apollo_client } from "../config/apollo";
 import { Loading } from "../components/ui/Loading";
 
-export const AppRouter = () => {
-  //   const [whoIam, { data: me }] = useLazyQuery(ME);
+export const AppRouter = ({ history }) => {
+  const [whoIam, { data: me }] = useLazyQuery(ME);
   const dispatch = useDispatch();
 
   const [isAuthenticated, setIsAuthenticated] = useState("");
 
   const { token } = useSelector((state) => state.auth);
-  //const token = localStorage.getItem("_token");
+  // const token = localStorage.getItem("_token");
+
   //observer
   useEffect(async () => {
     if (token !== undefined) {
       setIsAuthenticated(true);
+      // history.push('/dashboard')
     } else {
       setIsAuthenticated(false);
+      // history.push('/auth/login');
     }
-  }, [token]);
+  }, [token, history]);
 
-  useEffect(() => {
-    // alert(`isAuthenticated es ${isAuthenticated}`);
-  }, [isAuthenticated]);
 
-  useEffect(() => {
-    return () => {
-      setIsAuthenticated("");
-    };
-  }, []);
 
-  useEffect(() => {
-    if (token !== undefined) {
-      //   console.log(localStorage.getItem("_token"));
+  useEffect( async () => {
+    console.log(token)
+    if (token !== null  && token !== "") {
+      console.log(localStorage.getItem("_token"));
       try {
-        apollo_client
-          .query({
-            query: ME,
-          })
-          .then((response) => {
-            console.log(response.data.me);
-            const access_token = token;
-            const { id, name, email, images } = response.data.me;
 
-            dispatch(
-              LogInAction(id, access_token, name, email, images[0].name)
-            );
-            setIsAuthenticated(true);
-          });
+        apollo_client
+            .query({
+              query: ME,
+            })
+            .then((response) => {
+              console.log("devolvio apolo")
+              console.log(response.data.me);
+              const access_token = token;
+              const { id, name, email, images } = response.data.me;
+
+              dispatch(
+                  LogInAction(id, access_token, name, email, images[0].name)
+              );
+              setIsAuthenticated(true);
+            });
       } catch (error) {
         console.log(error.message);
       }
     } else {
       setIsAuthenticated(false);
     }
+
+
   }, []);
 
   return (
-    <>
-      <Router>
-        {isAuthenticated === "" ? (
-          <div className="my-64">
-            <Loading />
-          </div>
-        ) : (
-          <div className="my-auto ">
+      <>
+        <Router>
+          <div className="my-auto">
             <Switch>
-              {(isAuthenticated === false || isAuthenticated === true) && (
-                <Route exact path="/auth/login" component={AuthContainer} />
+              {isAuthenticated && (
+                  <Route path="/dashboard" component={DashboardLayout} />
               )}
 
-              {isAuthenticated === true ? (
-                <Route path="/dashboard" component={DashboardLayout} />
-              ) : (
-                <Redirect to="/auth/login" />
+              {!isAuthenticated && (
+                  <Route exact path="/auth/login" component={AuthContainer} />
               )}
+
+
+              <Redirect to={isAuthenticated ? "/dashboard" : "/auth/login"} />
+
             </Switch>
           </div>
-        )}
-      </Router>
-    </>
+        </Router>
+      </>
   );
+
+
 };

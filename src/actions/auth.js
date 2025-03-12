@@ -6,6 +6,8 @@ export const LogInAction = (id, token, name, email, photo) => {
   };
 };
 
+
+
 export const login = (id, token, name, email, photo) => ({
   type: types.login,
   payload: {
@@ -21,9 +23,14 @@ export const LogoutAction = () => {
   return (dispatch) => {
     dispatch(logout());
     localStorage.removeItem("_token");
+    // Redirigir o recargar la URL específica
+    window.location.assign("http://liveinspired.local");
+
   };
 };
 
 export const logout = () => ({
   type: types.logout,
 });
+
+

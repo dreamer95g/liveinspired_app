@@ -9,6 +9,7 @@ import { startLoadingAction, finishLoadingAction } from "../../actions/ui";
 import { Loading } from "../ui/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "antd";
+import {CopyToClipboard} from "react-copy-to-clipboard";
 const { TextArea } = Input;
 
 export const PhraseScreen = ({ history }) => {
@@ -22,6 +23,11 @@ export const PhraseScreen = ({ history }) => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
+
+  const [phraseToCopy, setPhraseToCopy] = useState({
+    value: "",
+    copied: false,
+  });
 
   useEffect(() => {
     getPhraseById({
@@ -57,9 +63,40 @@ export const PhraseScreen = ({ history }) => {
 
       setTags(tgs);
 
+      setTimeout(() => {
+        assignPhraseToCopy();
+      }, 4000);
+
       dispatch(finishLoadingAction());
     }
   }, [phrase]);
+
+  //METODO PARA COPIAR
+  const copyToClip = () => {
+    assignPhraseToCopy();
+
+    const { copied } = phraseToCopy;
+
+    if (copied) {
+      openNotification(
+          "success",
+          "Frase Copiada",
+          "Frase copiada al portapapeles."
+      );
+    }
+  };
+
+  const assignPhraseToCopy = () => {
+    let phraseText = document.getElementById("phrase")?.innerText;
+    let authorText = document.getElementById("author")?.innerText;
+    let tagsText = document.getElementById("tags")?.innerText;
+
+    if (phraseText !== undefined) {
+      let phrase =authorText + "\n\n" + phraseText + "\n\n" + tagsText;
+
+      setPhraseToCopy({ value: phrase, copied: true });
+    }
+  };
 
   const goBack = () => {
     history.push("/dashboard/phrases");
@@ -82,40 +119,65 @@ export const PhraseScreen = ({ history }) => {
             <div className="content-center text-center my-6 ">
               <div className="inline-flex items-center ">
                 <h1 className="text-2xl mx-3 pt-5">Ver frase de </h1>
-                <h1 className="  text-2xl font-semibold text-blue-700 mx-1 pt-5">{` ${author}`}</h1>
+                <h1 className="  text-2xl font-semibold text-blue-700 mx-1 pt-5" id="author">{` ${author}`}</h1>
+              </div>
+
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <CopyToClipboard
+                    text={phraseToCopy.value}
+                    onCopy={copyToClip}
+                >
+                      <span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-8 w-8 cursor-pointer hover:text-blue-600"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                          />
+                        </svg>
+                      </span>
+                </CopyToClipboard>
               </div>
             </div>
 
-            <hr className="w-1/2 text-center content-center mx-auto" />
+            <hr className="w-1/2 text-center content-center mx-auto"/>
 
             <div>
               <div>
                 <blockquote className="my-5 mx-5 px-5 py-5 ">
                   <div className="content-center flex">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="mx-auto my-1 h-8 w-8"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="mx-auto my-1 h-8 w-8"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
                     >
                       <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                       />
                     </svg>
                     {/* <h1 className="mx-auto text-xl text-center">Dni </h1> */}
                   </div>
-                  <br />
+                  <br/>
 
-                  {/* <p className="text-lg text-center">{text}</p> */}
+                  <p className="text-lg text-center"  id="phrase" hidden={true}>{text}</p>
+
                   <div className="mx-auto text-center content-center">
                     <TextArea
                       value={text}
                       style={{
-                        width: "550px",
+                        width: "500px",
                         borderRadius: "10px",
                         paddingTop: "15px",
                         paddingBottom: "15px",
@@ -146,7 +208,7 @@ export const PhraseScreen = ({ history }) => {
                       d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                     />
                   </svg>
-                  <div className="text-md font-semibold text-center">
+                  <div className="text-md font-semibold text-center" id="tags">
                     {tags.map((tg, i) => {
                       return (
                         <p
@@ -166,12 +228,12 @@ export const PhraseScreen = ({ history }) => {
               <div className="flex mx-auto ">
                 <button
                   onClick={goBack}
-                  className="bg-gradient-to-r from-green-600 to-green-500 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-indigo-400  focus:outline-none "
+                  className="bg-gradient-to-r from-green-600 to-green-500 flex w-38 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-indigo-400  focus:outline-none "
                   type="button"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="mx-4 h-6 w-6"
+                    className="mx-1 h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -189,12 +251,12 @@ export const PhraseScreen = ({ history }) => {
                   onClick={() => {
                     history.push("/dashboard/search");
                   }}
-                  className="bg-gradient-to-r from-blue-600 to-blue-500 flex w-48 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-blue-400  focus:outline-none "
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 flex w-38 h-11 mx-1 px-4 py-2 rounded-full border text-white border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 transform bg-transparent  hover:bg-blue-400  focus:outline-none "
                   type="button"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="mx-4 h-6 w-6"
+                    className="mx-1 h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
