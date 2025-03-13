@@ -49,7 +49,7 @@ export const NoteList = ({ history }) => {
 
       const record = {
         key: note.id,
-        text: note.text,
+        text: note.text.substring(0, 50) + " ...",
         date: note.date,
 
         tags:

@@ -96,8 +96,9 @@ export const ConfigModal = ({
           );
           handleOk();
 
-          // handleLogout();
-          history.push("/auth/login");
+          handleLogout();
+         // history.push("/auth/login");
+          window.location.assign("http://liveinspired.local");
           dispatch(finishLoadingAction());
         } else {
           openNotification(

@@ -130,9 +130,11 @@ export const MainSearch = ({ history }) => {
             });
           }
 
+          const reducedNote = text.substring(0, 300) + " ...";
+
           const elem = {
             id: id,
-            text: text,
+            text: reducedNote,
             tags: tgs,
           };
           setResultsFounded((resultsFounded) => [...resultsFounded, elem]);
@@ -164,6 +166,8 @@ export const MainSearch = ({ history }) => {
               tgs.push(`#${c.name}`);
             });
           }
+
+
 
           const elem = {
             id: id,

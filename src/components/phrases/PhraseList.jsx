@@ -50,7 +50,7 @@ export const PhraseList = ({ history }) => {
 
       const record = {
         key: phrase.id,
-        text: phrase.text,
+        text: phrase.text.substring(0,50)+ " ...",
         author: phrase.author,
 
         tags:

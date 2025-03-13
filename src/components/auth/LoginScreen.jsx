@@ -29,11 +29,13 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
 
   //ESTO SE EJECUTA A PENAS INICIA EL COMPONENTE, PARA COMPORBAR SI YA ESTA EL TOKEN
   useEffect(() => {
-    const tok =  localStorage.getItem("_token");
-    //console.log(tok);
-    tok !== null ? setToken(tok) : "";
+    dispatch(startLoadingAction());
 
-  })
+    setTimeout(() => {
+            dispatch(finishLoadingAction());
+    }, 3000);
+
+  }, [1]);
 
   // METODO QUE LANZA LAS NOTIFICACIONES
   const openNotification = (type, message, description) => {

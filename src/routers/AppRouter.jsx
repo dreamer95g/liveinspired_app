@@ -40,9 +40,10 @@ export const AppRouter = ({ history }) => {
 
 
   useEffect( async () => {
-    console.log(token)
+    // console.log(token)
+
     if (token !== null  && token !== "") {
-      console.log(localStorage.getItem("_token"));
+      // console.log(localStorage.getItem("_token"));
       try {
 
         apollo_client
@@ -50,8 +51,8 @@ export const AppRouter = ({ history }) => {
               query: ME,
             })
             .then((response) => {
-              console.log("devolvio apolo")
-              console.log(response.data.me);
+
+              // console.log(response.data.me);
               const access_token = token;
               const { id, name, email, images } = response.data.me;
 
@@ -61,7 +62,7 @@ export const AppRouter = ({ history }) => {
               setIsAuthenticated(true);
             });
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     } else {
       setIsAuthenticated(false);

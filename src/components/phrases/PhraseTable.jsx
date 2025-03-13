@@ -86,7 +86,7 @@ export const PhraseTable = ({ phraseList, setSelectedIds, tagFilter }) => {
       title: "Autor",
       dataIndex: "author",
       ...getColumnSearchProps("author"),
-      width: "20%",
+      width: "30%",
       defaultSortOrder: "descend",
       sorter: (a, b) => a.author.length - b.author.length,
     },
@@ -96,7 +96,7 @@ export const PhraseTable = ({ phraseList, setSelectedIds, tagFilter }) => {
       filters: tagFilter,
 
       onFilter: (value, record) => record.tags.includes(value),
-      width: "35%",
+      width: "30%",
       filterSearch: true,
 
       render: (tags) => (
