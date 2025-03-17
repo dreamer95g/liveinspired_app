@@ -33,7 +33,7 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
 
     setTimeout(() => {
             dispatch(finishLoadingAction());
-    }, 3000);
+    }, 2000);
 
   }, [1]);
 
@@ -117,7 +117,7 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
           id="image"
           src={`${url_base}assets/images/logo.png`}
           // src="/src/assets/logo.png"
-          className="w-40 h-40 mx-auto content-center my-auto"
+          className="w-40 h-40 mx-auto content-center my-auto rounded-full "
         />
 
         <form className="mt-6">

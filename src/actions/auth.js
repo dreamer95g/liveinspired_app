@@ -24,7 +24,7 @@ export const LogoutAction = () => {
     dispatch(logout());
     localStorage.removeItem("_token");
     // Redirigir o recargar la URL específica
-    window.location.assign("http://liveinspired.local");
+    window.location.assign("http://liveinspired.home");
 
   };
 };

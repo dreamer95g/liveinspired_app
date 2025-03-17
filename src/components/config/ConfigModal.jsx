@@ -98,7 +98,7 @@ export const ConfigModal = ({
 
           handleLogout();
          // history.push("/auth/login");
-          window.location.assign("http://liveinspired.local");
+          window.location.assign("http://liveinspired.home");
           dispatch(finishLoadingAction());
         } else {
           openNotification(

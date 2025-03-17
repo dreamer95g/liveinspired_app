@@ -4,14 +4,15 @@ import "./index.css";
 import "antd/dist/antd.css";
 import "animate.css";
 
-import { TrackingApp } from "./TrackingApp";
+import { InspiredApp } from "./InspiredApp";
 import { apollo_client } from "./config/apollo";
 
 import { ApolloProvider } from "@apollo/client";
 
+
 ReactDOM.render(
   <ApolloProvider client={apollo_client}>
-    <TrackingApp />,
+    <InspiredApp />,
   </ApolloProvider>,
 
   document.getElementById("root")

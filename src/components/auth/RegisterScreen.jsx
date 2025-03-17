@@ -131,12 +131,12 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
   return (
     <div>
       {/* <div className="bg-gradient-to-r from-indigo-700 to-indigo-400 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-md shadow-lg dark:bg-gray-800"> */}
-      <div className=" animate__animated animate__fadeIn bg-gradient-to-r from-indigo-500 to-blue-500 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
+      <div className="  animate__animated animate__fadeIn bg-gradient-to-r from-indigo-500 to-blue-500 focus:border-2 border-gray-50 w-full max-w-sm p-6 m-auto my-20  rounded-2xl shadow-2xl dark:bg-gray-800">
         <img
           id="image"
           src={`${url_base}assets/images/logo.png`}
           // src="/src/assets/logo.png"
-          className="w-40 h-40 mx-auto content-center my-auto"
+          className="w-40 h-40 mx-auto content-center my-auto rounded-full"
         />
 
         <form className="mt-6">

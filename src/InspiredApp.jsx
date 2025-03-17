@@ -8,7 +8,7 @@ import { AppRouter } from "./routers/AppRouter";
 import { ConfigProvider } from "antd";
 import esES from "antd/lib/locale/es_ES";
 
-export const TrackingApp = () => {
+export const InspiredApp = () => {
   return (
     <Provider store={store}>
       <ConfigProvider locale={esES}>
