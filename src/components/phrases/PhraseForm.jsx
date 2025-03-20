@@ -153,12 +153,14 @@ export const PhraseForm = ({ history }) => {
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
-      message: message,
+      message:message,
       description: description,
+      placement: placement,
     });
   };
+
 
   const goBack = () => {
     history.push("/dashboard/phrases");
@@ -180,7 +182,8 @@ export const PhraseForm = ({ history }) => {
         openNotification(
           "success",
           "Frase Guardada",
-          `La frase se guardó de forma satisfactoria!`
+          `La frase se guardó de forma satisfactoria!`,
+            "top"
         );
         dispatch(finishLoadingAction());
         history.push("/dashboard/phrases");
@@ -191,7 +194,8 @@ export const PhraseForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrió algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`,
+          "top"
       );
     }
   };
@@ -235,7 +239,8 @@ export const PhraseForm = ({ history }) => {
         openNotification(
           "success",
           "Frase Editada",
-          "La frase se ha modificado de forma satisfactoria!"
+          "La frase se ha modificado de forma satisfactoria!",
+            "top"
         );
         dispatch(finishLoadingAction());
         history.push("/dashboard/phrases");
@@ -245,7 +250,8 @@ export const PhraseForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrió algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`,
+          "top"
       );
     }
   };

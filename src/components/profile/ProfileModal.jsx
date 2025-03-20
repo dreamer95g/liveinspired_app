@@ -67,10 +67,11 @@ export const ProfileModal = ({
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description,placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement:placement
     });
   };
 
@@ -149,14 +150,16 @@ export const ProfileModal = ({
               openNotification(
                 "warning",
                 "Atencion",
-                "No coinciden las contraseñas!!"
+                "No coinciden las contraseñas!!",
+                  "top"
               );
             }
           } else {
             openNotification(
               "warning",
               "Atención",
-              "Debe llenar las campos de las contraseñas!"
+              "Debe llenar las campos de las contraseñas!",
+                "top"
             );
             hasError = true;
           }
@@ -167,7 +170,8 @@ export const ProfileModal = ({
         openNotification(
           "error",
           "Error",
-          "La actual contraseña no es válida!!"
+          "La actual contraseña no es válida!!",
+            "top"
         );
       }
 
@@ -240,19 +244,20 @@ export const ProfileModal = ({
         } else {
           hasError = true;
           dispatch(finishLoadingAction());
-          openNotification("warning", "Atención", "Debe llenar el nombre!");
+          openNotification("warning", "Atención", "Debe llenar el nombre!","top");
         }
       }
     } catch (error) {
       console.log(error);
-      openNotification("error", "Error", error.message);
+      openNotification("error", "Error", error.message,"top");
     }
 
     if (hasError === false) {
       openNotification(
         "success",
         "Usuario Modificado",
-        "Su usuario fue modificado correctamente"
+        "Su usuario fue modificado correctamente",
+          "top"
       );
       setAction("view");
     }

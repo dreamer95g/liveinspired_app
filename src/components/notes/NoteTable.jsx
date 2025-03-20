@@ -90,6 +90,7 @@ export const NoteTable = ({ noteList, setSelectedIds, tagFilter }) => {
       ...getColumnSearchProps("text"),
       // filterSearch: true,
       width: "50%",
+      // sorter: (a, b) => a.name.localeCompare(b.name)
     },
     {
       title: "Palabras Clave",

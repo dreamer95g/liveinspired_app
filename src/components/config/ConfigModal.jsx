@@ -53,7 +53,8 @@ export const ConfigModal = ({
           openNotification(
             "success",
             "Backup",
-            "Backup realizado de forma satisfactoria!"
+            "Backup realizado de forma satisfactoria!",
+              "top"
           );
           handleOk();
           dispatch(finishLoadingAction());
@@ -61,7 +62,8 @@ export const ConfigModal = ({
           openNotification(
             "error",
             "Error",
-            "Ocurrió algún error, revise la ruta del directorio o backup!"
+            "Ocurrió algún error, revise la ruta del directorio o backup!",
+              "top"
           );
           dispatch(finishLoadingAction());
         }
@@ -70,7 +72,8 @@ export const ConfigModal = ({
       openNotification(
         "warning",
         "Atención",
-        "Llene el directorio o backup SQL!"
+        "Llene el directorio o backup SQL!",
+          "top"
       );
     }
   };
@@ -92,7 +95,8 @@ export const ConfigModal = ({
           openNotification(
             "success",
             "Respaldo",
-            "Datos restaurados de forma satisfactoria!"
+            "Datos restaurados de forma satisfactoria!",
+              "top"
           );
           handleOk();
 
@@ -104,7 +108,8 @@ export const ConfigModal = ({
           openNotification(
             "error",
             "Error",
-            "Ocurrió algún error, revise la ruta del directorio o backup!"
+            "Ocurrió algún error, revise la ruta del directorio o backup!",
+              "top"
           );
           dispatch(finishLoadingAction());
         }
@@ -113,16 +118,18 @@ export const ConfigModal = ({
       openNotification(
         "warning",
         "Atención",
-        "Llene el directorio o backup SQL!"
+        "Llene el directorio o backup SQL!",
+          "top"
       );
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement:placement
     });
   };
 

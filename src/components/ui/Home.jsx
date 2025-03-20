@@ -80,10 +80,11 @@ export const Home = ({ history }) => {
     }
   };
 
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 
@@ -97,7 +98,8 @@ export const Home = ({ history }) => {
       openNotification(
         "success",
         "Frase Copiada",
-        "Frase copiada al portapapeles."
+        "Frase copiada al portapapeles.",
+          "top"
       );
     }
   };

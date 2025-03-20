@@ -38,10 +38,11 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
   }, [1]);
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement:placement
     });
   };
 
@@ -96,14 +97,15 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
           openNotification(
             "error",
             "Error!",
-            "No se reconoce usuario o contraseña!"
+            "No se reconoce usuario o contraseña!",
+              "top"
           );
 
         dispatch(finishLoadingAction());
         animateBrandImage(false);
       }
     } else {
-      openNotification("warning", "Atención!", "Llene los campos!");
+      openNotification("warning", "Atención!", "Llene los campos!","top");
     }
   };
 

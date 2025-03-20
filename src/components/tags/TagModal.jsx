@@ -28,7 +28,7 @@ export const TagModal = ({
         saveTag(name);
         setName("");
       } else {
-        openNotification("warning", "Atencion", "Llene la Palabra Clave!!");
+        openNotification("warning", "Atencion", "Llene la Palabra Clave!!", "top");
       }
     }
 
@@ -37,16 +37,17 @@ export const TagModal = ({
         modifyTag(name);
         setName("");
       } else {
-        openNotification("warning", "Atencion", "Llene la Palabra Clave!!");
+        openNotification("warning", "Atencion", "Llene la Palabra Clave!!", "top");
       }
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 

@@ -37,10 +37,11 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
 
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 
@@ -58,22 +59,22 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
     let isValid = true;
 
     if (validator.isEmpty(name)) {
-      openNotification("warning", "Atencion", "Llene el nombre!");
+      openNotification("warning", "Atencion", "Llene el nombre!", "top");
       isValid = false;
     }
 
     if (validator.isEmpty(email) || !validator.isEmail(email)) {
-      openNotification("warning", "Atencion", "Entre un correo valido!");
+      openNotification("warning", "Atencion", "Entre un correo valido!", "top");
       isValid = false;
     }
 
     if (validator.isEmpty(password || password_confirmation)) {
-      openNotification("warning", "Atencion", "Llene la contraseña!");
+      openNotification("warning", "Atencion", "Llene la contraseña!", "top");
       isValid = false;
     }
 
     if (password !== password_confirmation) {
-      openNotification("warning", "Atencion", "Las contraseñas no coinciden!");
+      openNotification("warning", "Atencion", "Las contraseñas no coinciden!", "top");
       isValid = false;
     }
 
@@ -107,7 +108,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
               openNotification(
                 "success",
                 "Usuario",
-                "Usuario registrado de forma satisfctoria!"
+                "Usuario registrado de forma satisfctoria!", "top"
               );
               setShowLoginScreen(true);
             }
@@ -120,7 +121,7 @@ export const RegisterScreen = ({ setShowLoginScreen, history }) => {
           openNotification(
             "error",
             "Error!",
-            "Ya existe un usuario con ese correo o la contraseña es de menos de 8 caracteres!"
+            "Ya existe un usuario con ese correo o la contraseña es de menos de 8 caracteres!", "top"
           );
 
         dispatch(finishLoadingAction());

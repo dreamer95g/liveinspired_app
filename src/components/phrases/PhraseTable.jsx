@@ -81,6 +81,7 @@ export const PhraseTable = ({ phraseList, setSelectedIds, tagFilter }) => {
       dataIndex: "text",
       ...getColumnSearchProps("text"),
       width: "40%",
+
     },
     {
       title: "Autor",
@@ -88,13 +89,12 @@ export const PhraseTable = ({ phraseList, setSelectedIds, tagFilter }) => {
       ...getColumnSearchProps("author"),
       width: "30%",
       defaultSortOrder: "descend",
-      sorter: (a, b) => a.author.length - b.author.length,
+      // sorter: (a, b) => a.name.localeCompare(b.name)
     },
     {
       title: "Palabras Clave",
       dataIndex: "tags",
       filters: tagFilter,
-
       onFilter: (value, record) => record.tags.includes(value),
       width: "30%",
       filterSearch: true,

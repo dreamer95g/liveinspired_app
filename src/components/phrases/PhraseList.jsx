@@ -78,14 +78,15 @@ export const PhraseList = ({ history }) => {
           openNotification(
             "success",
             "Información",
-            "Frase eliminada satisfactoriamente!"
+            "Frase eliminada satisfactoriamente!",
+              "top"
           );
           clean();
           // dispatch(finishLoadingAction());
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`,"top");
         // dispatch(finishLoadingAction());
       }
     } else if (selectedIds.length > 1) {
@@ -97,7 +98,8 @@ export const PhraseList = ({ history }) => {
           openNotification(
             "success",
             "Información",
-            "Frases eliminadas satisfactoriamente!"
+            "Frases eliminadas satisfactoriamente!",
+              "top"
           );
           clean();
           // dispatch(finishLoadingAction());
@@ -111,7 +113,8 @@ export const PhraseList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una frase!"
+        "Debe seleccionar al menos una frase!",
+          "top"
       );
     }
   };
@@ -141,12 +144,14 @@ export const PhraseList = ({ history }) => {
         description: "Esta seguro que desea eliminar la frase?",
         btn,
         key,
+        placement: "top"
       });
     } else {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una frase!"
+        "Debe seleccionar al menos una frase!",
+          "top"
       );
     }
   };
@@ -175,7 +180,8 @@ export const PhraseList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una frase!"
+        "Debe seleccionar al menos una frase!",
+          "top"
       );
     }
   };
@@ -191,16 +197,18 @@ export const PhraseList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una frase!"
+        "Debe seleccionar al menos una frase!",
+          "top"
       );
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement ) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 

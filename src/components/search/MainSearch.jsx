@@ -84,15 +84,16 @@ export const MainSearch = ({ history }) => {
       }
     } else {
       dispatch(finishLoadingAction());
-      openNotification("warning", "Atención", "Seleccione las Palabras Clave");
+      openNotification("warning", "Atención", "Seleccione las Palabras Clave", "top");
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 
@@ -248,7 +249,7 @@ export const MainSearch = ({ history }) => {
           </Select>
           <button
             onClick={search}
-            className=" bg-blue-600 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-blue-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 focus:outline-none text-white"
+            className=" rounded-md bg-blue-600 flex w-16 mx-auto h-8 px-1 py-1 text-center hover:bg-blue-400  border border-gray-300 font-medium tracking-wide capitalize transition-colors duration-200 focus:outline-none text-white"
             type="button"
           >
             <svg

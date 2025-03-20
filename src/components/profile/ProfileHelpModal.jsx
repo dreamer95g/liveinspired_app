@@ -20,10 +20,11 @@ export const ProfileHelpModal = ({ showHelpModal, setShowHelpModal }) => {
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description,placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement:placement
     });
   };
 

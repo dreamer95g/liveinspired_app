@@ -78,14 +78,15 @@ export const NoteList = ({ history }) => {
           openNotification(
             "success",
             "Información",
-            "Nota eliminada satisfactoriamente!"
+            "Nota eliminada satisfactoriamente!",
+              "top"
           );
           clean();
           // dispatch(finishLoadingAction());
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió una error: ${error.name}`,"top");
         // dispatch(finishLoadingAction());
       }
     } else if (selectedIds.length > 1) {
@@ -97,7 +98,8 @@ export const NoteList = ({ history }) => {
           openNotification(
             "success",
             "Información",
-            "Notas eliminadas satisfactoriamente!"
+            "Notas eliminadas satisfactoriamente!",
+              "top"
           );
           clean();
           // dispatch(finishLoadingAction());
@@ -111,7 +113,8 @@ export const NoteList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una nota!"
+        "Debe seleccionar al menos una nota!",
+          "top"
       );
     }
   };
@@ -139,12 +142,14 @@ export const NoteList = ({ history }) => {
         description: "Esta seguro que desea eliminar la nota?",
         btn,
         key,
+        placement: "top"
       });
     } else {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una nota!"
+        "Debe seleccionar al menos una nota!",
+          "top"
       );
     }
   };
@@ -171,7 +176,8 @@ export const NoteList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una nota!"
+        "Debe seleccionar al menos una nota!",
+          "top"
       );
     }
   };
@@ -187,16 +193,18 @@ export const NoteList = ({ history }) => {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una nota!"
+        "Debe seleccionar al menos una nota!",
+          "top"
       );
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 

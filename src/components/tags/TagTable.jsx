@@ -80,8 +80,8 @@ export const TagTable = ({ tagsList, setSelectedIds }) => {
       title: "Palabras Clave",
       dataIndex: "name",
       ...getColumnSearchProps("name"),
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.name.length - b.name.length,
+      // defaultSortOrder: "descend",
+      // sorter: (a, b) => a.name.length - b.name.length,
     },
   ];
 

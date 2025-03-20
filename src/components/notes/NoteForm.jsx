@@ -98,7 +98,8 @@ export const NoteForm = ({ history }) => {
           openNotification(
             "success",
             "Palabra Clave agregada",
-            `La Palabra Clave ${name} fue agregada satisfactoriamente`
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`,
+              "top"
           );
         });
       } catch (error) {
@@ -133,12 +134,12 @@ export const NoteForm = ({ history }) => {
     let isValid = true;
 
     if (validator.isEmpty(date)) {
-      openNotification("warning", "Atención", "Llene la fecha!");
+      openNotification("warning", "Atención", "Llene la fecha!", "top");
       isValid = false;
     }
 
     if (validator.isEmpty(text)) {
-      openNotification("warning", "Atención", "Escriba algo en la nota!");
+      openNotification("warning", "Atención", "Escriba algo en la nota!", "top");
       isValid = false;
     }
 
@@ -146,7 +147,8 @@ export const NoteForm = ({ history }) => {
       openNotification(
         "warning",
         "Atención",
-        "Seleccione al menos una etiqueta!"
+        "Seleccione al menos una etiqueta!",
+          "top"
       );
       isValid = false;
     }
@@ -155,10 +157,11 @@ export const NoteForm = ({ history }) => {
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 
@@ -182,7 +185,8 @@ export const NoteForm = ({ history }) => {
         openNotification(
           "success",
           "Nota Guardada",
-          `La nota se guardó de forma satisfactoria!`
+          `La nota se guardó de forma satisfactoria!`,
+            "top"
         );
         dispatch(finishLoadingAction());
         history.push("/dashboard/notes");
@@ -193,7 +197,8 @@ export const NoteForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrió algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`,
+          "top"
       );
     }
   };
@@ -237,7 +242,8 @@ export const NoteForm = ({ history }) => {
         openNotification(
           "success",
           "Nota Editada",
-          "La nota se ha modificado de forma satisfactoria!"
+          "La nota se ha modificado de forma satisfactoria!",
+            "top"
         );
         dispatch(finishLoadingAction());
         history.push("/dashboard/notes");
@@ -247,7 +253,8 @@ export const NoteForm = ({ history }) => {
       openNotification(
         "error",
         "Error",
-        `Ocurrió algun error: ${error.message} !`
+        `Ocurrió algun error: ${error.message} !`,
+          "top"
       );
     }
   };

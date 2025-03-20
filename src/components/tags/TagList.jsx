@@ -49,10 +49,11 @@ export const TagList = ({ history }) => {
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description, placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement: placement
     });
   };
 
@@ -88,7 +89,8 @@ export const TagList = ({ history }) => {
           openNotification(
             "success",
             "Palabra Clave agregada",
-            `La Palabra Clave ${name} fue agregada satisfactoriamente`
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`,
+              "top"
           );
         });
       } catch (error) {
@@ -111,7 +113,8 @@ export const TagList = ({ history }) => {
             openNotification(
               "success",
               "Palabra Clave editada",
-              `La Palabra Clave ${name} fue editada satisfactoriamente`
+              `La Palabra Clave ${name} fue editada satisfactoriamente`,
+                "top"
             );
           });
         } catch (error) {
@@ -122,7 +125,8 @@ export const TagList = ({ history }) => {
       openNotification(
         `success`,
         `Atención!`,
-        `Selecione una Palabra Clave!!!`
+        `Selecione una Palabra Clave!!!`,
+          "top"
       );
     }
   };
@@ -140,7 +144,8 @@ export const TagList = ({ history }) => {
         openNotification(
           "success",
           "Palabra Clave eliminada",
-          `La Palabra Clave fue eliminada satisfactoriamente`
+          `La Palabra Clave fue eliminada satisfactoriamente`,
+            "top"
         );
         //dispatch(finishLoadingAction());
       });
@@ -157,21 +162,23 @@ export const TagList = ({ history }) => {
           openNotification(
             "success",
             "Palabra Clave eliminada",
-            `Las palabras clave fueron eliminadas satisfactoriamente`
+            `Las palabras clave fueron eliminadas satisfactoriamente`,
+              "top"
           );
           clean();
           // dispatch(finishLoadingAction());
         });
       } catch (error) {
         console.log(error.name);
-        openNotification("error", "Error!", `Ocurrió un error: ${error.name}`);
+        openNotification("error", "Error!", `Ocurrió un error: ${error.name}`,"top");
         // dispatch(finishLoadingAction());
       }
     } else {
       openNotification(
         "warning",
         "Atención!!",
-        `Seleccione una Palabra Clave!`
+        `Seleccione una Palabra Clave!`,
+          "top"
       );
     }
   };
@@ -200,12 +207,14 @@ export const TagList = ({ history }) => {
         description: "Esta seguro que desea eliminar la Palabra Clave?",
         btn,
         key,
+        placement: "top"
       });
     } else {
       openNotification(
         "warning",
         "Atención!",
-        "Debe seleccionar al menos una Palabra Clave!"
+        "Debe seleccionar al menos una Palabra Clave!",
+          "top"
       );
     }
   };
@@ -291,7 +300,8 @@ export const TagList = ({ history }) => {
                   openNotification(
                     "warning",
                     "Atención!",
-                    "Debe seleccionar una Palabra Clave!"
+                    "Debe seleccionar una Palabra Clave!",
+                      "top"
                   );
                 }
               }}
