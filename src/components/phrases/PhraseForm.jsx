@@ -97,7 +97,8 @@ export const PhraseForm = ({ history }) => {
           openNotification(
             "success",
             "Palabra Clave agregada",
-            `La Palabra Clave ${name} fue agregada satisfactoriamente`
+            `La Palabra Clave ${name} fue agregada satisfactoriamente`,
+              "top"
           );
         });
       } catch (error) {
@@ -144,7 +145,8 @@ export const PhraseForm = ({ history }) => {
       openNotification(
         "warning",
         "Atención",
-        "Seleccione al menos una etiqueta!"
+        "Seleccione al menos una etiqueta!",
+          "top"
       );
       isValid = false;
     }
