@@ -246,7 +246,7 @@ export const NoteForm = ({ history }) => {
             "top"
         );
         dispatch(finishLoadingAction());
-        history.push("/dashboard/notes");
+        // history.push("/dashboard/notes");
       });
     } catch (error) {
       dispatch(finishLoadingAction());

@@ -245,7 +245,7 @@ export const PhraseForm = ({ history }) => {
             "top"
         );
         dispatch(finishLoadingAction());
-        history.push("/dashboard/phrases");
+        // history.push("/dashboard/phrases");
       });
     } catch (error) {
       dispatch(finishLoadingAction());

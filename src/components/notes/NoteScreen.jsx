@@ -106,16 +106,18 @@ export const NoteScreen = ({ history }) => {
       openNotification(
           "success",
           "Nota Copiada",
-          "Nota copiada al portapapeles."
+          "Nota copiada al portapapeles.",
+          "top"
       );
     }
   };
 
   // METODO QUE LANZA LAS NOTIFICACIONES
-  const openNotification = (type, message, description) => {
+  const openNotification = (type, message, description,placement) => {
     notification[type]({
       message: message,
       description: description,
+      placement:placement
     });
   };
 

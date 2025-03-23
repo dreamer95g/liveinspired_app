@@ -81,12 +81,13 @@ export const AppRouter = ({ history }) => {
               )}
 
               {!isAuthenticated && (
-                  <Route exact path="/auth/login" component={AuthContainer} />
+                  // <Route exact path="/auth/login" component={AuthContainer} />
+                  <Route exact path="/" component={AuthContainer} />
               )}
 
 
-              <Redirect to={isAuthenticated ? "/dashboard" : "/auth/login"} />
-
+              {/*<Redirect to={isAuthenticated ? "/dashboard" : "/auth/login"} />*/}
+              <Redirect to={isAuthenticated ? "/dashboard" : "/"} />
             </Switch>
           </div>
         </Router>
