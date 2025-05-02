@@ -24,6 +24,7 @@ import { Input } from "antd";
 import { apollo_client } from "../../config/apollo";
 import moment from "moment/moment";
 
+
 //ADD TAG
 import { TagModal } from "../tags/TagModal";
 import { CREATE_TAG } from "../../graphql/mutations/TagsMutations";
@@ -84,6 +85,8 @@ export const NoteForm = ({ history }) => {
     dispatch(finishLoadingAction());
   };
 
+
+
   // agregar etiquetas si no existen
   const saveTag = async (name) => {
     if (name !== "") {
@@ -126,6 +129,7 @@ export const NoteForm = ({ history }) => {
       } else {
         await refetch();
         await modifyNote();
+
       }
     }
   };
@@ -203,6 +207,7 @@ export const NoteForm = ({ history }) => {
     }
   };
 
+
   const modifyNote = async () => {
     const idNote = id;
 
@@ -246,7 +251,8 @@ export const NoteForm = ({ history }) => {
             "top"
         );
         dispatch(finishLoadingAction());
-        // history.push("/dashboard/notes");
+         history.push("/dashboard/notes");
+
       });
     } catch (error) {
       dispatch(finishLoadingAction());
@@ -334,17 +340,17 @@ export const NoteForm = ({ history }) => {
               <hr className="w-1/2 text-center content-center mx-auto" />
               <div className="my-6">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mx-auto h-7 w-7 my-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mx-auto h-7 w-7 my-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                   />
                 </svg>
 
@@ -362,6 +368,9 @@ export const NoteForm = ({ history }) => {
                   }}
                   autoSize
                 />
+                <br/>
+
+
               </div>
 
               <div className="my-8">

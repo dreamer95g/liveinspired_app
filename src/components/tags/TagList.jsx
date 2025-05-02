@@ -85,15 +85,18 @@ export const TagList = ({ history }) => {
             user: user_id,
           },
         }).then((data) => {
-          refetchTags();
+         clean();
+
           openNotification(
             "success",
             "Palabra Clave agregada",
             `La Palabra Clave ${name} fue agregada satisfactoriamente`,
               "top"
           );
+
         });
       } catch (error) {
+        clean();
         console.log(error.message);
       }
     }
@@ -109,7 +112,7 @@ export const TagList = ({ history }) => {
               name: name,
             },
           }).then((data) => {
-            refetchTags();
+            clean();
             openNotification(
               "success",
               "Palabra Clave editada",
@@ -131,6 +134,7 @@ export const TagList = ({ history }) => {
     }
   };
 
+
   const removeTag = async () => {
     notification.destroy();
     if (selectedIds.length === 1) {
@@ -140,7 +144,7 @@ export const TagList = ({ history }) => {
           id: selectedIds[0],
         },
       }).then((data) => {
-        refetchTags();
+        clean();
         openNotification(
           "success",
           "Palabra Clave eliminada",
@@ -166,7 +170,7 @@ export const TagList = ({ history }) => {
               "top"
           );
           clean();
-          // dispatch(finishLoadingAction());
+
         });
       } catch (error) {
         console.log(error.name);
@@ -183,10 +187,16 @@ export const TagList = ({ history }) => {
     }
   };
 
-  const clean = () => {
+  const clean = async  () => {
+    dispatch(startLoadingAction());
     setSelectedIds([]);
-    setTags([]);
-    refetchTags();
+    // setTags([]);
+
+    setTimeout(() => {
+      refetchTags();
+      dispatch(finishLoadingAction());
+    }, 2000);
+
   };
 
   const openNotificationDelete = () => {
@@ -385,6 +395,7 @@ export const TagList = ({ history }) => {
         setShowModal={setShowModal}
         saveTag={saveTag}
         modifyTag={modifyTag}
+        clean={clean}
       />
     </div>
   );

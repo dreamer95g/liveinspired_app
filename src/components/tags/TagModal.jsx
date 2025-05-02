@@ -8,7 +8,7 @@ export const TagModal = ({
   setTagName,
   tag,
   saveTag,
-  modifyTag,
+  modifyTag
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -27,8 +27,10 @@ export const TagModal = ({
       if (name !== "") {
         saveTag(name);
         setName("");
+
       } else {
         openNotification("warning", "Atencion", "Llene la Palabra Clave!!", "top");
+
       }
     }
 
@@ -96,7 +98,7 @@ export const TagModal = ({
       </Button> */}
       <Modal
         title={title}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[

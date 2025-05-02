@@ -9,7 +9,13 @@ import { ConfigProvider } from "antd";
 import esES from "antd/lib/locale/es_ES";
 
 export const InspiredApp = () => {
-  return (
+
+    if (typeof global === 'undefined') {
+        window.global = window;
+    }
+
+
+    return (
     <Provider store={store}>
       <ConfigProvider locale={esES}>
         <AppRouter />

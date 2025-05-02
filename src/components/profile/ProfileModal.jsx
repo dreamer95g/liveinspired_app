@@ -308,7 +308,7 @@ export const ProfileModal = ({
     <>
       <Modal
         title={title}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[

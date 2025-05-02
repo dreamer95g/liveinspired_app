@@ -12,7 +12,7 @@ import { ApolloProvider } from "@apollo/client";
 
 ReactDOM.render(
   <ApolloProvider client={apollo_client}>
-    <InspiredApp />,
+    <InspiredApp />
   </ApolloProvider>,
 
   document.getElementById("root")

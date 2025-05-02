@@ -37,5 +37,5 @@ export const DashBoardRoutes = () => {
       <Route exact path="/dashboard/tags" component={TagList} />
       <Redirect to="/dashboard" />
     </Switch>
-  );
+  )
 };

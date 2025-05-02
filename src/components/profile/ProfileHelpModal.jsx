@@ -48,7 +48,7 @@ export const ProfileHelpModal = ({ showHelpModal, setShowHelpModal }) => {
     <>
       <Modal
         title={title}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[

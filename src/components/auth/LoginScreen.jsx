@@ -27,12 +27,19 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
   const { username, password } = formValues;
   const [token, setToken] = useState("");
 
+
   //ESTO SE EJECUTA A PENAS INICIA EL COMPONENTE, PARA COMPORBAR SI YA ESTA EL TOKEN
   useEffect(() => {
+    animateBrandImage(true);
     dispatch(startLoadingAction());
+
+    // const tkn = localStorage.getItem("_token");
+    //
+    // setToken(tkn);
 
     setTimeout(() => {
             dispatch(finishLoadingAction());
+      animateBrandImage(false);
     }, 2000);
 
   }, [1]);
@@ -50,9 +57,9 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
     const img = document.getElementById("image");
 
     if (stauts) {
-      // img.classList.add("animate-pulse");
+      img.classList.add("animate-pulse");
     } else {
-      // img.classList.remove("animate-pulse");
+      img.classList.remove("animate-pulse");
     }
   };
 
@@ -84,7 +91,7 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
             }
 
             localStorage.setItem("_token", access_token);
-            // animateBrandImage(false);
+            animateBrandImage(false);
           }
 
           dispatch(finishLoadingAction());
@@ -175,16 +182,15 @@ export const LoginScreen = ({ setShowLoginScreen, history }) => {
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/3 border-b dark:border-gray-600 lg:w-1/3"></span>
 
-                {token !== "" && token !== null ? (<>
+                  <p
+                      onClick={() => {
+                        setShowLoginScreen(false);
+                      }}
+                      className="font-semibold cursor-pointer text-md hover:text-gray-200 text-center text-white dark:text-gray-400"
+                  >
+                    {`Registrarse`}
+                  </p>
 
-                </>) : (<p
-                    onClick={() => {
-                      setShowLoginScreen(false);
-                    }}
-                    className="font-semibold cursor-pointer text-md hover:text-gray-200 text-center text-white dark:text-gray-400"
-                >
-                  {`Registrarse`}
-                </p>)}
 
 
                 <span className="w-1/3 border-b dark:border-gray-400 lg:w-1/3"></span>

@@ -147,7 +147,7 @@ export const ProfilePhotoInput = ({ setPhoto, action, selectedImage }) => {
         {fileList !== undefined && fileList.length >= 1 ? null : uploadButton}
       </Upload>
       <Modal
-        visible={previewVisible}
+        open={previewVisible}
         title={previewTitle}
         footer={null}
         onCancel={handleCancel}

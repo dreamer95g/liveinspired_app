@@ -152,7 +152,7 @@ export const ConfigModal = ({
     <>
       <Modal
         title={`Backup o Restauración de los Datos`}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
